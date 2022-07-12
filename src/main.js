@@ -8,6 +8,7 @@ Vue.config.productionTip = false;
 
 Bitrix24.init().then(($BX24) => {
   store.commit('bx24init', $BX24);
+  $BX24.setTitle('Секретный бот 🤖');
   load(App, $BX24);
 }).catch(() => {
   load(StickerList, {});

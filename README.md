@@ -46,9 +46,9 @@ export default {
 #### /src/api/
 
 ```bash
-/src/api/index.js # запросы к /ajax/
+/src/api/index.json # запросы к /ajax/
 /src/api/Ajax.js # подключение axios
-/src/api/bitrix/index.js # класс для работы с API Битрикс24
+/src/api/bitrix/index.json # класс для работы с API Битрикс24
 /src/api/bitrix/requestList.php # batch-запросы
 /src/api/bitrix/handlerList.php # обработка ответов
 ```

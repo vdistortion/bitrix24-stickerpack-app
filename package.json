@@ -2,7 +2,7 @@
   "name": "stickerpack-bot",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve --host localhost",
+    "serve": "vue-cli-service serve --host 0.0.0.0",
     "build": "vue-cli-service build && node archiving.js",
     "lint": "vue-cli-service lint",
     "grid": "node smartgrid.js",
