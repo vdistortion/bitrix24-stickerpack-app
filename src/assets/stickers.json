@@ -326,5 +326,139 @@
         "title": "Сайт должен приносить прибыль"
       }
     ]
+  },
+  {
+    "title": "Рыбка Дори",
+    "link": "tg://addstickers?set=dori_vk",
+    "list": [
+      {
+        "icon": "stickers/dori_vk/1.png",
+        "title": ""
+      },
+      {
+        "icon": "stickers/dori_vk/2.png",
+        "title": ""
+      },
+      {
+        "icon": "stickers/dori_vk/3.png",
+        "title": ""
+      },
+      {
+        "icon": "stickers/dori_vk/4.png",
+        "title": ""
+      },
+      {
+        "icon": "stickers/dori_vk/5.png",
+        "title": ""
+      },
+      {
+        "icon": "stickers/dori_vk/6.png",
+        "title": ""
+      },
+      {
+        "icon": "stickers/dori_vk/7.png",
+        "title": ""
+      },
+      {
+        "icon": "stickers/dori_vk/8.png",
+        "title": ""
+      },
+      {
+        "icon": "stickers/dori_vk/9.png",
+        "title": ""
+      },
+      {
+        "icon": "stickers/dori_vk/10.png",
+        "title": ""
+      },
+      {
+        "icon": "stickers/dori_vk/11.png",
+        "title": ""
+      },
+      {
+        "icon": "stickers/dori_vk/12.png",
+        "title": ""
+      },
+      {
+        "icon": "stickers/dori_vk/13.png",
+        "title": ""
+      },
+      {
+        "icon": "stickers/dori_vk/14.png",
+        "title": ""
+      },
+      {
+        "icon": "stickers/dori_vk/15.png",
+        "title": ""
+      },
+      {
+        "icon": "stickers/dori_vk/16.png",
+        "title": ""
+      },
+      {
+        "icon": "stickers/dori_vk/17.png",
+        "title": ""
+      },
+      {
+        "icon": "stickers/dori_vk/18.png",
+        "title": ""
+      },
+      {
+        "icon": "stickers/dori_vk/19.png",
+        "title": ""
+      },
+      {
+        "icon": "stickers/dori_vk/20.png",
+        "title": ""
+      },
+      {
+        "icon": "stickers/dori_vk/21.png",
+        "title": ""
+      },
+      {
+        "icon": "stickers/dori_vk/22.png",
+        "title": ""
+      },
+      {
+        "icon": "stickers/dori_vk/23.png",
+        "title": ""
+      },
+      {
+        "icon": "stickers/dori_vk/24.png",
+        "title": ""
+      },
+      {
+        "icon": "stickers/dori_vk/25.png",
+        "title": ""
+      },
+      {
+        "icon": "stickers/dori_vk/26.png",
+        "title": ""
+      },
+      {
+        "icon": "stickers/dori_vk/27.png",
+        "title": ""
+      },
+      {
+        "icon": "stickers/dori_vk/28.png",
+        "title": ""
+      },
+      {
+        "icon": "stickers/dori_vk/29.png",
+        "title": ""
+      },
+      {
+        "icon": "stickers/dori_vk/30.png",
+        "title": ""
+      },
+      {
+        "icon": "stickers/dori_vk/31.png",
+        "title": ""
+      },
+      {
+        "icon": "stickers/dori_vk/32.png",
+        "title": ""
+      }
+    ]
   }
 ]

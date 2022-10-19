@@ -1,8 +1,13 @@
-const path = require('path');
+import path from 'path';
+import { fileURLToPath } from 'node:url';
 
-const dirNameApp = path.resolve(__dirname).split(path.sep).pop();
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const fullPath = path.resolve(__dirname).split(path.sep);
+const appName = fullPath[fullPath.length - 1];
+const archiveName = `${appName}.zip`;
 
-module.exports = {
-  dirNameApp,
-  archiveName: [dirNameApp, 'zip'].join('.'),
+export {
+  appName,
+  archiveName,
 };

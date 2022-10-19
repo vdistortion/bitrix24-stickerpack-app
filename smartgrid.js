@@ -1,4 +1,4 @@
-const smartgrid = require('smart-grid');
+import smartgrid from 'smart-grid';
 
 smartgrid('./src/assets', {
   filename: 'smartgrid',

@@ -1,10 +1,5 @@
 <template>
-  <a
-    :href="dirname"
-    class="button-icon-team"
-    title="Скачать последнюю версию"
-    download
-  >
+  <a :href="dirname" title="Скачать последнюю версию" download>
     <span class="mdi mdi-download"></span>
   </a>
 </template>
@@ -21,5 +16,6 @@ export default {
       return [origin, path.join('/')].join('');
     },
   },
+  name: 'dev-panel-download',
 };
 </script>

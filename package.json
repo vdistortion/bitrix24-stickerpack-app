@@ -1,38 +1,34 @@
 {
-  "name": "stickerpack-bot",
+  "name": "bitrix24-stickerpack-bot",
   "private": true,
+  "type": "module",
   "scripts": {
-    "serve": "vue-cli-service serve --host 0.0.0.0",
-    "build": "vue-cli-service build && node archiving.js",
-    "lint": "vue-cli-service lint",
+    "dev": "vite --host 0.0.0.0",
+    "watch": "vite build --watch",
+    "build": "vite build && node archiving.js",
+    "preview": "vite preview --host 0.0.0.0 --port 4173",
+    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore",
     "grid": "node smartgrid.js",
-    "caniuse": "npx browserslist@latest --update-db"
+    "grep": "sh grep.sh",
+    "public": "npm run build && node gh-pages.js"
   },
   "dependencies": {
-    "archiver": "^5.3.0",
-    "axios": "^0.25.0",
-    "core-js": "^3.6.5",
-    "object-to-formdata": "^4.4.1",
-    "smart-grid": "^2.1.2",
+    "archiver": "^5.3.1",
+    "axios": "^0.27.2",
+    "copy-to-clipboard": "^3.3.2",
+    "object-to-formdata": "^4.4.2",
+    "pinia": "^2.0.17",
     "uuid": "^8.3.2",
-    "vue": "^2.6.11",
-    "vue-bitrix24": "^0.0.10",
-    "vuex": "^3.4.0"
+    "vue": "^3.2.37",
+    "vue-bitrix24": "^0.1.2"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "~4.5.0",
-    "@vue/cli-plugin-eslint": "~4.5.0",
-    "@vue/cli-plugin-vuex": "~4.5.0",
-    "@vue/cli-service": "~4.5.0",
-    "@vue/eslint-config-airbnb": "^5.0.2",
-    "babel-eslint": "^10.1.0",
-    "eslint": "^6.7.2",
-    "eslint-plugin-import": "^2.20.2",
-    "eslint-plugin-vue": "^6.2.2",
-    "html-webpack-harddisk-plugin": "^1.0.2",
-    "html-webpack-plugin": "^4.5.2",
-    "stylus": "^0.54.7",
-    "stylus-loader": "^3.0.2",
-    "vue-template-compiler": "^2.6.11"
+    "@vitejs/plugin-vue": "^3.0.1",
+    "eslint": "^8.21.0",
+    "eslint-plugin-vue": "^9.3.0",
+    "gh-pages": "^4.0.0",
+    "smart-grid": "^2.1.2",
+    "stylus": "^0.59.0",
+    "vite": "^3.0.4"
   }
 }

@@ -1,10 +1,5 @@
 <template>
-  <a
-    href="#"
-    class="button-icon-team"
-    title="Обновить (Ctrl+R)"
-    @click.prevent="reload"
-  >
+  <a href="#" title="Обновить (Ctrl+R)" @click.prevent="reload">
     <span class="mdi mdi-reload"></span>
   </a>
 </template>
@@ -17,12 +12,14 @@ export default {
     },
   },
   created() {
-    window.addEventListener('keydown', (e) => {
+    this.$BX24.bind(window, 'keydown', (e) => {
       if (e.ctrlKey && e.code === 'KeyR') {
         e.preventDefault();
         this.reload();
       }
     });
   },
+  inject: ['$BX24'],
+  name: 'dev-panel-reload',
 };
 </script>

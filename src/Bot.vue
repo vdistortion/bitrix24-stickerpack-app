@@ -28,8 +28,8 @@
 </template>
 
 <script>
-import config from '../config';
-import stickers from '../stickers';
+import config from './config';
+import stickers from './assets/stickers.json';
 
 export default {
   methods: {
@@ -58,10 +58,14 @@ export default {
       size: 100,
     };
   },
+  name: 'app-bot',
 };
 </script>
 
 <style lang="stylus">
+html
+  font-family Roboto, sans-serif
+  overflow initial
 .pack h3
   display inline-block
   background-color #ffffff

@@ -1,6 +1,6 @@
 import config from '../../config';
 
-export default (isAdmin) => ({
+export default () => ({
   getBotId() {
     return {
       botId: ['imbot.bot.list'],

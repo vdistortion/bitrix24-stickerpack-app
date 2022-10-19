@@ -1,8 +1,9 @@
 <template>
-  <component v-if="isVisible" :is="TopPanel"></component>
+  <dev-panel v-if="isVisible"></dev-panel>
 </template>
 
 <script>
+import DevPanel from './DevPanel.vue';
 import utils from '../../utils/helpers';
 
 export default {
@@ -10,10 +11,11 @@ export default {
     isVisible() {
       return utils.isDevelopmentMode() || utils.isDevelopmentPortal(this.$BX24.getDomain());
     },
-    TopPanel() {
-      return () => import(/* webpackChunkName: 'dev-panel' */ './TopPanel.vue');
-    },
   },
   inject: ['$BX24'],
+  components: {
+    DevPanel,
+  },
+  name: 'is-dev-panel',
 };
 </script>

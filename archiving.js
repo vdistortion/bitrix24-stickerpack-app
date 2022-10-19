@@ -1,28 +1,45 @@
-const fs = require('fs');
-const archiver = require('archiver');
-const { archiveName } = require('./getNames');
+import fs from 'fs';
+import archiver from 'archiver';
+import { archiveName } from './getNames.js';
 
+const archive = archiver('zip', { zlib: { level: 9 } });
 const output = fs.createWriteStream(archiveName);
-const archive = archiver('zip', {
-  zlib: {
-    level: 9,
+const path = (path) => ['dist', path].join('/');
+const list = [
+  {
+    file: false,
+    name: 'assets',
   },
+  {
+    file: false,
+    name: 'smiles',
+  },
+  {
+    file: false,
+    name: 'stickers',
+  },
+  {
+    file: true,
+    name: 'frameCommunicationInit.js',
+  },
+  {
+    file: true,
+    name: 'constants.js',
+  },
+  {
+    file: true,
+    name: 'index.html',
+  },
+  {
+    file: true,
+    name: 'favicon.ico',
+  },
+];
+
+list.forEach(({ file, name }) => {
+  if (file) archive.file(path(name), { name });
+  else archive.directory(path(name), name, null);
 });
-const list = {
-  directories: ['dist'],
-  files: ['frameCommunicationInit.js', 'constants.js', 'index.html'],
-};
 
 archive.pipe(output);
-
-list.directories.forEach((directory) => {
-  archive.directory(directory, directory, null);
-});
-
-list.files.forEach((fileName) => {
-  archive.file(fileName, {
-    name: fileName,
-  });
-});
-
-archive.finalize();
+archive.finalize().then(console.log).catch(console.warn);

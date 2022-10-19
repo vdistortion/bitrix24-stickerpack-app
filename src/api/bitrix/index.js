@@ -3,7 +3,8 @@ import handlerList from './handlerList';
 
 export default class BitrixBatch {
   constructor(BX24, isAdmin = false) {
-    this.callBatch = BX24.batch.bind(BX24);
+    const instanceBatch = BX24.createBatch(handlerList);
+    this.batch = instanceBatch.batch.bind(instanceBatch);
     this.isAdmin = isAdmin;
     this.requestList = getRequestList(isAdmin);
   }
@@ -22,9 +23,5 @@ export default class BitrixBatch {
 
   appUpdate(appId) {
     return this.batch(this.requestList.appUpdate(appId));
-  }
-
-  batch(request) {
-    return this.callBatch(request, handlerList);
   }
 }
