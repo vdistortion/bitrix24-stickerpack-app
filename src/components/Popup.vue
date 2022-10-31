@@ -101,10 +101,10 @@ export default {
     background-color rgba(#000000, .7)
   &__window
     position fixed
-    top 50%
+    top 100px
     left 50%
     padding 10px
-    transform translate(-50%, -50%)
+    transform translateX(-50%)
     background-color #FFFFFF
   &__body
     margin 10px 0

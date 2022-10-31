@@ -6,11 +6,14 @@ export const useRootStore = defineStore('root', {
     return {
       batch: null,
       botId: null,
+      hash: '',
     };
   },
 
   actions: {
     bx24init(BX24) {
+      const { member_id } = BX24.getAuth();
+      this.hash = member_id;
       this.batch = new BitrixBatch(BX24, BX24.isAdmin());
     },
 
@@ -21,9 +24,18 @@ export const useRootStore = defineStore('root', {
         this.botId = result.botId;
 
         if (result.botId) {
-          this.batch.app(result.botId).then((result) => this.batch.appUpdate(result.app)).then(console.log).catch(console.warn);
+          this.batch.app(result.botId, this.hash)
+            .then((result) => this.batch.appUpdate(result.app, this.hash))
+            .then(console.log)
+            .catch(console.warn);
         } else {
-          this.batch.add().then(console.log).catch(console.warn);
+          this.batch.add()
+            .then((result) => {
+              // this.batch.delete(result.add);
+              return result;
+            })
+            .then(console.log)
+            .catch(console.warn);
         }
       }).catch(console.warn);
     },

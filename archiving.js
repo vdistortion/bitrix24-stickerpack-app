@@ -20,14 +20,6 @@ const list = [
   },
   {
     file: true,
-    name: 'frameCommunicationInit.js',
-  },
-  {
-    file: true,
-    name: 'constants.js',
-  },
-  {
-    file: true,
     name: 'index.html',
   },
   {

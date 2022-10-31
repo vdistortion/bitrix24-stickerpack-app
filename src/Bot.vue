@@ -1,5 +1,23 @@
 <template>
   <div>
+    <div class="pack">
+      <h3>{{ customStickers.title }}</h3>
+      <ul class="stickers">
+        <li
+          v-for="(sticker, key) in customStickers.list"
+          :key="key"
+          @click="onClick('send', sticker.icon, sticker.title, sticker.size)"
+          @contextmenu.prevent="onClick('put', sticker.icon, sticker.title, sticker.size)"
+        >
+          <img
+            :src="getIcon(sticker.icon)"
+            :alt="sticker.title"
+            :title="sticker.title"
+            :style="getStyle(sticker.size)"
+          >
+        </li>
+      </ul>
+    </div>
     <div
       v-for="(pack, key) in stickers"
       :key="key"
@@ -30,6 +48,7 @@
 <script>
 import config from './config';
 import stickers from './assets/stickers.json';
+import api from './api';
 
 export default {
   methods: {
@@ -55,6 +74,10 @@ export default {
   data() {
     return {
       stickers,
+      customStickers: {
+        title: 'Свои стикеры',
+        list: api.get(),
+      },
       size: 100,
     };
   },

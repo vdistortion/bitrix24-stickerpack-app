@@ -17,11 +17,15 @@ export default class BitrixBatch {
     return this.batch(this.requestList.add());
   }
 
-  app(botId) {
-    return this.batch(this.requestList.app(botId));
+  delete(botId) {
+    return this.batch(this.requestList.delete(botId));
   }
 
-  appUpdate(appId) {
-    return this.batch(this.requestList.appUpdate(appId));
+  app(botId, hash) {
+    return this.batch(this.requestList.app(botId, hash));
+  }
+
+  appUpdate(appId, hash) {
+    return this.batch(this.requestList.appUpdate(appId, hash));
   }
 }

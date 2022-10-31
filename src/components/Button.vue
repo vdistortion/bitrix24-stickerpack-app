@@ -48,6 +48,6 @@ export default {
     font-size 18px
   &__text
     display none
-    +from(1000px)
+    +from(992px)
       display block
 </style>

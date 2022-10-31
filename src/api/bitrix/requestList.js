@@ -20,7 +20,17 @@ export default () => ({
       },
     };
   },
-  app(botId) {
+  delete(botId) {
+    return {
+      add: {
+        method: 'imbot.unregister',
+        params: {
+          BOT_ID: botId,
+        },
+      },
+    };
+  },
+  app(botId, hash) {
     return {
       app: {
         method: 'imbot.app.register',
@@ -28,7 +38,7 @@ export default () => ({
           BOT_ID: botId,
           CODE: config.global.appCodeName,
           IFRAME: config.handler,
-          HASH: 'd41d8cd98f00b204e9800998ecf8427e',
+          HASH: hash,
           LANG: [
             {
               LANGUAGE_ID: 'ru',
@@ -43,7 +53,7 @@ export default () => ({
       },
     };
   },
-  appUpdate(appId) {
+  appUpdate(appId, hash) {
     return {
       appUpdate: {
         method: 'imbot.app.update',
@@ -51,7 +61,7 @@ export default () => ({
           APP_ID: appId,
           FIELDS: {
             IFRAME: config.handler,
-            HASH: 'd41d8cd98f00b204e9800998ecf8427e',
+            HASH: hash,
             LANG: [
               {
                 LANGUAGE_ID: 'ru',
