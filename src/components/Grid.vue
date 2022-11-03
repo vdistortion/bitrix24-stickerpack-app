@@ -12,6 +12,7 @@
       :icon="sticker.icon"
       :title="sticker.title"
       :size="sticker.size"
+      :is-custom="isAdd"
       selected
       class="grid__item"
       @remove="$emit('remove-sticker', sticker)"

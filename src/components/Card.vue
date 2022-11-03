@@ -2,11 +2,13 @@
   <div class="card" :class="{ disabled: !active }" :title="title">
     <header class="card__header">
       <app-icon
+        v-if="isCustom"
         class="card__icon"
         name="close-circle"
         @click.stop="$emit('remove')"
       ></app-icon>
       <input
+        v-if="false"
         v-model="active"
         :id="id"
         type="checkbox"
@@ -43,6 +45,10 @@ export default {
       type: String,
       required: true,
     },
+    isCustom: {
+      type: Boolean,
+      default: false,
+    },
     selected: {
       type: Boolean,
       default: false,
@@ -60,6 +66,7 @@ export default {
 
 .card
   text-align center
+  &:hover
   &.disabled
     opacity .5
   &__header

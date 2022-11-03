@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="pack">
+    <div v-if="customStickers.list.length" class="pack">
       <h3>{{ customStickers.title }}</h3>
       <ul class="stickers">
         <li
