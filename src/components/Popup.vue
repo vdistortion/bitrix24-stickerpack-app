@@ -31,26 +31,44 @@
             <tr>
               <td>Адрес:</td>
               <td>
-                <input type="text" v-model="icon">
+                <input
+                  v-model="icon"
+                  type="text"
+                  placeholder="URL (обязательно)"
+                >
               </td>
             </tr>
             <tr>
               <td>Описание:</td>
               <td>
-                <input type="text" v-model="title">
+                <input
+                  v-model="title"
+                  type="text"
+                  placeholder="Подсказка при наведении"
+                >
               </td>
             </tr>
             <tr>
               <td>Размер ({{ sizes[size] }}):</td>
               <td>
-                <input type="range" min="0" step="1" max="2" v-model.number="size">
+                <input
+                  v-model.number="size"
+                  type="range"
+                  min="0"
+                  step="1"
+                  max="2"
+                >
               </td>
             </tr>
           </tbody>
         </table>
       </div>
       <div class="popup__footer">
-        <app-button icon="plus" @click="onAdd">Добавить стикер</app-button>
+        <app-button
+          icon="plus"
+          :disabled="!icon"
+          @click="onAdd"
+        >Добавить стикер</app-button>
       </div>
     </div>
   </div>
@@ -106,6 +124,7 @@ export default {
     padding 10px
     transform translateX(-50%)
     background-color #FFFFFF
+    width 300px
   &__body
     margin 10px 0
   &__image

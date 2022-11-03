@@ -4,8 +4,16 @@
       <slot></slot>
     </div>
     <div class="panel__item right">
-      <app-button icon="content-copy" @click="$emit('copy-code')">Копировать код</app-button>
-      <app-button icon="plus" @click="$emit('open-popup')">Добавить стикер</app-button>
+      <app-button
+        icon="content-copy"
+        title="Копировать код для вставки в чат Битрикса24"
+        @click="$emit('copy-code')"
+      >Копировать код</app-button>
+      <app-button
+        icon="plus"
+        title="Добавить стикер в текущий браузер"
+        @click="$emit('open-popup')"
+      >Добавить стикер</app-button>
     </div>
     <teleport to="#modals">
       <app-popup

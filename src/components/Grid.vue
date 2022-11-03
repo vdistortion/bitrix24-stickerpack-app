@@ -2,12 +2,17 @@
   <div class="grid">
     <h2 class="grid__title">
       <span>{{ title }}</span>
-      <a v-if="link" :href="link" target="_blank" aria-label="Ссылка на стикерпак">
+      <a
+        v-if="link"
+        :href="link"
+        target="_blank"
+        aria-label="Ссылка на стикерпак"
+      >
         <app-icon name="open-in-new"></app-icon>
       </a>
     </h2>
     <app-card
-      v-for="sticker in list"
+      v-for="(sticker, index) in list"
       :key="sticker.icon"
       :icon="sticker.icon"
       :title="sticker.title"
@@ -16,11 +21,12 @@
       selected
       class="grid__item"
       @remove="$emit('remove-sticker', sticker)"
-      @toggle="onToggle(sticker, $event)"
+      @toggle="$emit('toggle-sticker', [index, $event])"
     ></app-card>
     <div
       v-if="isAdd"
       class="grid__item add"
+      title="Добавить стикер в текущий браузер"
       @click="$emit('open-popup')"
     >+</div>
   </div>
@@ -31,14 +37,6 @@ import AppCard from './Card.vue';
 import AppIcon from './Icon.vue';
 
 export default {
-  methods: {
-    onClose(sticker) {
-      console.log('close', sticker.title);
-    },
-    onToggle(sticker, checked) {
-      console.log('toggle', sticker.title, checked);
-    },
-  },
   props: {
     title: {
       type: String,

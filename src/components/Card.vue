@@ -5,13 +5,15 @@
         v-if="isCustom"
         class="card__icon"
         name="close-circle"
+        title="Удалить стикер из вашего браузера"
         @click.stop="$emit('remove')"
       ></app-icon>
       <input
-        v-if="false"
+        v-else
         v-model="active"
         :id="id"
         type="checkbox"
+        title="Отключить стикер при копировании кода"
         @click="$emit('toggle', $event.target.checked)"
       >
     </header>

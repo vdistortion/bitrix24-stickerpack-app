@@ -1,47 +1,45 @@
 <template>
-  <div>
-    <div v-if="customStickers.list.length" class="pack">
-      <h3>{{ customStickers.title }}</h3>
-      <ul class="stickers">
-        <li
-          v-for="(sticker, key) in customStickers.list"
-          :key="key"
-          @click="onClick('send', sticker.icon, sticker.title, sticker.size)"
-          @contextmenu.prevent="onClick('put', sticker.icon, sticker.title, sticker.size)"
+  <div v-if="customStickers.list.length" class="pack">
+    <h3>{{ customStickers.title }}</h3>
+    <ul class="stickers">
+      <li
+        v-for="(sticker, key) in customStickers.list"
+        :key="key"
+        @click="onClick('send', sticker.icon, sticker.title, sticker.size)"
+        @contextmenu.prevent="onClick('put', sticker.icon, sticker.title, sticker.size)"
+      >
+        <img
+          :src="getIcon(sticker.icon)"
+          :alt="sticker.title"
+          :title="getTitle(sticker.title)"
+          :style="getStyle(sticker.size)"
         >
-          <img
-            :src="getIcon(sticker.icon)"
-            :alt="sticker.title"
-            :title="sticker.title"
-            :style="getStyle(sticker.size)"
-          >
-        </li>
-      </ul>
-    </div>
-    <div
-      v-for="(pack, key) in stickers"
-      :key="key"
-      class="pack"
-    >
-      <h3>
-        {{ pack.title }} <a v-if="pack.link" :href="pack.link" target="_blank">🔗</a>
-      </h3>
-      <ul class="stickers">
-        <li
-          v-for="(sticker, key) in pack.list"
-          :key="key"
-          @click="onClick('send', sticker.icon, sticker.title, sticker.size)"
-          @contextmenu.prevent="onClick('put', sticker.icon, sticker.title, sticker.size)"
+      </li>
+    </ul>
+  </div>
+  <div
+    v-for="(pack, key) in stickers"
+    :key="key"
+    class="pack"
+  >
+    <h3>
+      {{ pack.title }} <a v-if="pack.link" :href="pack.link" target="_blank">🔗</a>
+    </h3>
+    <ul class="stickers">
+      <li
+        v-for="(sticker, key) in pack.list"
+        :key="key"
+        @click="onClick('send', sticker.icon, sticker.title, sticker.size)"
+        @contextmenu.prevent="onClick('put', sticker.icon, sticker.title, sticker.size)"
+      >
+        <img
+          :src="getIcon(sticker.icon)"
+          :alt="sticker.title"
+          :title="getTitle(sticker.title)"
+          :style="getStyle(sticker.size)"
         >
-          <img
-            :src="getIcon(sticker.icon)"
-            :alt="sticker.title"
-            :title="sticker.title"
-            :style="getStyle(sticker.size)"
-          >
-        </li>
-      </ul>
-    </div>
+      </li>
+    </ul>
   </div>
 </template>
 
@@ -61,7 +59,6 @@ export default {
     },
     getStyle(size = this.size) {
       return {
-        // width: `${size}px`,
         height: `${size}px`,
         cursor: 'pointer',
       };
@@ -69,6 +66,13 @@ export default {
     getIcon(icon) {
       const fullPath = [config.path, 'dist', icon].join('/');
       return icon.includes('http') ? icon : fullPath;
+    },
+    getTitle(title) {
+      return [
+        title,
+        'ЛКМ — отправить в чат',
+        'ПКМ — добавить в поле ввода',
+      ].filter((text) => text).join('\n');
     },
   },
   data() {
@@ -89,6 +93,8 @@ export default {
 html
   font-family Roboto, sans-serif
   overflow initial
+#app
+  min-width initial
 .pack h3
   display inline-block
   background-color #ffffff

@@ -1,24 +1,5 @@
 [
   {
-    "title": "Колобки",
-    "list": [
-      {
-        "icon": "smiles/crazy2.gif",
-        "title": "crazy2",
-        "size": 27
-      }
-    ]
-  },
-  {
-    "title": "Я сделяль",
-    "list": [
-      {
-        "icon": "stickers/imade.jpg",
-        "title": "Я сделяль"
-      }
-    ]
-  },
-  {
     "title": "Смайлы",
     "link": "https://tlgrm.ru/stickers/VKsmilies",
     "list": [
@@ -329,7 +310,7 @@
   },
   {
     "title": "Рыбка Дори",
-    "link": "tg://addstickers?set=dori_vk",
+    "link": "https://tgram.ru/stickers/dori_vk",
     "list": [
       {
         "icon": "stickers/dori_vk/1.png",
@@ -458,6 +439,20 @@
       {
         "icon": "stickers/dori_vk/32.png",
         "title": ""
+      }
+    ]
+  },
+  {
+    "title": "Разное",
+    "list": [
+      {
+        "icon": "stickers/imade.jpg",
+        "title": "Я сделяль"
+      },
+      {
+        "icon": "smiles/crazy2.gif",
+        "title": "crazy2",
+        "size": 27
       }
     ]
   }

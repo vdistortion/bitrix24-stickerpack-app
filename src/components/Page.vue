@@ -22,11 +22,12 @@
         @remove-sticker="onRemoveSticker"
       ></app-grid>
       <app-grid
-        v-for="pack in stickers"
-        :key="pack.title"
+        v-for="(pack, key) in stickers"
+        :key="`${pack.title}_${key}`"
         :title="pack.title"
         :list="pack.list"
         :link="pack.link"
+        @toggle-sticker="onToggleSticker(key, $event)"
       ></app-grid>
     </div>
   </main>
@@ -52,6 +53,9 @@ export default {
     onSave() {
       api.set(this.customStickers.list);
     },
+    onToggleSticker(key, [index, checked]) {
+      this.stickers[key].list[index].visible = checked;
+    },
     onAddSticker(sticker) {
       this.customStickers.list.push(sticker);
       this.popup = false;
@@ -68,7 +72,7 @@ export default {
 
       [this.customStickers, ...stickers].forEach((pack) => {
         pack.list.forEach((sticker) => {
-          text.push(this.getIcon(sticker));
+          if (sticker.visible !== false) text.push(this.getIcon(sticker));
         });
       });
 
