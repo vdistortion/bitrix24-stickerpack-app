@@ -30,10 +30,8 @@ export const useRootStore = defineStore('root', {
             .catch(console.warn);
         } else {
           this.batch.add()
-            .then((result) => {
-              // this.batch.delete(result.add);
-              return result;
-            })
+            .then((result) => this.batch.app(result.add, this.hash))
+            .then((result) => this.batch.appUpdate(result.app, this.hash))
             .then(console.log)
             .catch(console.warn);
         }

@@ -38,7 +38,6 @@ html
 body
 #app
   margin 0
-  min-height 100vh
 
 #app
   font-family Roboto, sans-serif
@@ -55,9 +54,6 @@ body
     color #ffffff
     font-size 20px
     font-weight 400
-
-.page
-  flex-grow 1
 
 .l-wrapper
   wrapper()

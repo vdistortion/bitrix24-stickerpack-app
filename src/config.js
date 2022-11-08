@@ -1,11 +1,13 @@
+import { marketplace } from '@/packs';
+
 export default {
   scope: ['imbot'],
   placement: [],
   testDomains: [],
   scripts: [],
   global: {
-    appName: 'Стикеры в Битрикс24 (7 наборов)',
-    appNameEng: 'Bitrix24 Stickers (7 packs)',
+    appName: `Стикеры в Битрикс24 (${marketplace.length} наборов)`,
+    appNameEng: `Bitrix24 Stickers (${marketplace.length} packs)`,
     appCodeName: 'bitrix24-stickerpack-bot',
     appDirName: window.DIRNAME_APP,
     archiveName: window.ARCHIVE_NAME,
