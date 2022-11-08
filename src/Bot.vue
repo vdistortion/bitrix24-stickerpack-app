@@ -9,7 +9,7 @@
         @contextmenu.prevent="onClick('put', sticker.icon, sticker.title, sticker.size)"
       >
         <img
-          :src="getIcon(sticker.icon)"
+          :src="sticker.icon"
           :alt="sticker.title"
           :title="getTitle(sticker.title)"
           :style="getStyle(sticker.size)"
@@ -31,7 +31,7 @@
         @contextmenu.prevent="onClick('put', sticker.icon, sticker.title, sticker.size)"
       >
         <img
-          :src="getIcon(sticker.icon)"
+          :src="sticker.icon"
           :alt="sticker.title"
           :title="getTitle(sticker.title)"
           :style="getStyle(sticker.size)"
@@ -42,14 +42,13 @@
 </template>
 
 <script>
-import config from './config';
 import stickers, { marketplace } from './packs';
 import api from './api';
 
 export default {
   methods: {
     onClick(action, icon, title = 'Noname Sticker', size = this.size) {
-      this.sendMessage(action, `[icon=${this.getIcon(icon)} size=${size} title=${title}]`);
+      this.sendMessage(action, `[icon=${icon} size=${size} title=${title}]`);
     },
     sendMessage(action, message) {
       window.frameCommunicationSend({ action, message });
@@ -60,10 +59,6 @@ export default {
         height: `${size}px`,
         cursor: 'pointer',
       };
-    },
-    getIcon(icon) {
-      const fullPath = [config.path, 'dist', icon].join('/');
-      return icon.includes('http') ? icon : fullPath;
     },
     getTitle(title) {
       return [

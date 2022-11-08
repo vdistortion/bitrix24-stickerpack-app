@@ -1,11 +1,11 @@
 export default {
   scope: ['imbot'],
   placement: [],
-  testDomains: ['team.bitrix24.ru'],
+  testDomains: [],
   scripts: [],
   global: {
-    appName: 'Стикеры',
-    appNameEng: 'Stickers',
+    appName: 'Стикеры в Битрикс24 (7 наборов)',
+    appNameEng: 'Bitrix24 Stickers (7 packs)',
     appCodeName: 'bitrix24-stickerpack-bot',
     appDirName: window.DIRNAME_APP,
     archiveName: window.ARCHIVE_NAME,
