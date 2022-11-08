@@ -22,9 +22,7 @@
     :key="key"
     class="pack"
   >
-    <h3>
-      {{ pack.title }} <a v-if="pack.link" :href="pack.link" target="_blank">🔗</a>
-    </h3>
+    <h3>{{ pack.title }}</h3>
     <ul class="stickers">
       <li
         v-for="(sticker, key) in pack.list"
@@ -45,7 +43,7 @@
 
 <script>
 import config from './config';
-import stickers from './assets/stickers.json';
+import stickers, { marketplace } from './packs';
 import api from './api';
 
 export default {
@@ -75,9 +73,15 @@ export default {
       ].filter((text) => text).join('\n');
     },
   },
+  computed: {
+    stickers() {
+      if (this.state === 'marketplace') return marketplace;
+      return stickers;
+    },
+  },
   data() {
     return {
-      stickers,
+      state: 'marketplace', // default,marketplace
       customStickers: {
         title: 'Свои стикеры',
         list: api.get(),

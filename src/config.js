@@ -1,7 +1,7 @@
 export default {
   scope: ['imbot'],
   placement: [],
-  testDomains: [],
+  testDomains: ['team.bitrix24.ru'],
   scripts: [],
   global: {
     appName: 'Стикеры',

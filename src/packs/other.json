@@ -1,0 +1,14 @@
+{
+  "title": "Разное",
+  "list": [
+    {
+      "icon": "stickers/imade.jpg",
+      "title": "Я сделяль"
+    },
+    {
+      "icon": "stickers/smiles/crazy2.gif",
+      "title": "crazy2",
+      "size": 27
+    }
+  ]
+}

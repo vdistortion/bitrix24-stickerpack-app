@@ -6,7 +6,8 @@
         v-if="link"
         :href="link"
         target="_blank"
-        aria-label="Ссылка на стикерпак"
+        title="Добавить в Telegram"
+        aria-label="Добавить в Telegram"
       >
         <app-icon name="open-in-new"></app-icon>
       </a>

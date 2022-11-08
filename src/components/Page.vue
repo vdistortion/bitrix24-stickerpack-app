@@ -37,7 +37,7 @@
 import copy from 'copy-to-clipboard';
 import AppPanel from './Panel.vue';
 import AppGrid from './Grid.vue';
-import stickers from '../assets/stickers.json';
+import stickers, { marketplace } from '../packs';
 import api from '../api';
 
 export default {
@@ -67,10 +67,14 @@ export default {
     },
   },
   computed: {
+    stickers() {
+      if (this.state === 'marketplace') return marketplace;
+      return stickers;
+    },
     text() {
       const text = [];
 
-      [this.customStickers, ...stickers].forEach((pack) => {
+      [this.customStickers, ...this.stickers].forEach((pack) => {
         pack.list.forEach((sticker) => {
           if (sticker.visible !== false) text.push(this.getIcon(sticker));
         });
@@ -81,7 +85,7 @@ export default {
   },
   data() {
     return {
-      stickers,
+      state: 'marketplace', // default,marketplace
       customStickers: {
         title: 'Свои стикеры',
         list: api.get(),
