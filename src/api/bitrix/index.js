@@ -28,4 +28,8 @@ export default class BitrixBatch {
   appUpdate(appId, hash) {
     return this.batch(this.requestList.appUpdate(appId, hash));
   }
+
+  deleteApp(appId) {
+    return this.batch(this.requestList.deleteApp(appId));
+  }
 }

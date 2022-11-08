@@ -1,4 +1,7 @@
 import config from '../../config';
+import icon from '../../assets/icon.png';
+
+const file = icon.replace('data:image/png;base64,', '');
 
 export default () => ({
   getBotId() {
@@ -22,7 +25,7 @@ export default () => ({
   },
   delete(botId) {
     return {
-      add: {
+      deleteBot: {
         method: 'imbot.unregister',
         params: {
           BOT_ID: botId,
@@ -39,6 +42,7 @@ export default () => ({
           CODE: config.global.appCodeName,
           IFRAME: config.handler,
           HASH: hash,
+          ICON_FILE: file,
           LANG: [
             {
               LANGUAGE_ID: 'ru',
@@ -62,6 +66,7 @@ export default () => ({
           FIELDS: {
             IFRAME: config.handler,
             HASH: hash,
+            ICON_FILE: file,
             LANG: [
               {
                 LANGUAGE_ID: 'ru',
@@ -73,6 +78,16 @@ export default () => ({
               },
             ],
           },
+        },
+      },
+    };
+  },
+  deleteApp(appId) {
+    return {
+      deleteApp: {
+        method: 'imbot.app.unregister',
+        params: {
+          APP_ID: appId,
         },
       },
     };
