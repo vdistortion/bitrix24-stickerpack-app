@@ -79,6 +79,14 @@ export default {
       return stickers;
     },
   },
+  created() {
+    document.addEventListener('keydown', (e) => {
+      if (e.ctrlKey && e.shiftKey && e.code === 'KeyT') {
+        e.preventDefault();
+        this.state = this.state === 'marketplace' ? 'default' : 'marketplace';
+      }
+    });
+  },
   data() {
     return {
       state: 'marketplace', // default,marketplace
