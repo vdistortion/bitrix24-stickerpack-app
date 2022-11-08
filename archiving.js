@@ -12,19 +12,11 @@ const list = [
   },
   {
     file: false,
-    name: 'smiles',
-  },
-  {
-    file: false,
     name: 'stickers',
   },
   {
     file: true,
     name: 'index.html',
-  },
-  {
-    file: true,
-    name: 'favicon.ico',
   },
 ];
 
