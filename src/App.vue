@@ -8,20 +8,12 @@ import { mapActions } from 'pinia';
 import { useRootStore } from './stores';
 import IsDevPanel from './components/dev/IsDevPanel.vue';
 import AppPage from './components/Page.vue';
-import config from './config';
-import utils from './utils/helpers';
 
 export default {
   methods: mapActions(useRootStore, ['init']),
-  created() {
-    this.$BX24.appInfo().then((info) => {
-      utils.verifyScopeLog(config.scope, info.scope);
-    });
-  },
   mounted() {
     this.init().catch(console.warn);
   },
-  inject: ['$BX24'],
   components: {
     IsDevPanel,
     AppPage,

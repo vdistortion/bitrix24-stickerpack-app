@@ -15,7 +15,6 @@ if (isApp) {
     const app = createApp(App).use(createPinia());
     const store = useRootStore();
     store.bx24init(BX24);
-    BX24.setTitle('Секретный бот 🤖');
     app.provide('$BX24', BX24).mount('#app');
   });
 } else if (isBot) {

@@ -9,11 +9,6 @@
         title="Копировать код для вставки в чат Битрикса24"
         @click="$emit('copy-code')"
       >Копировать код</app-button>
-      <app-button
-        icon="plus"
-        title="Добавить стикер в текущий браузер"
-        @click="$emit('open-popup')"
-      >Добавить стикер</app-button>
     </div>
     <teleport to="#modals">
       <app-popup

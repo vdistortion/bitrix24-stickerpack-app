@@ -1,4 +1,20 @@
 <template>
+  <div class="howto">
+    <span class="howto__item">
+      <img
+        src="./assets/free-icon-mouse-left-button.png"
+        alt="ЛКМ"
+        title="Левая кнопка мыши"
+      > — отправить в чат
+    </span>
+    <span class="howto__item">
+      <img
+        src="./assets/free-icon-mouse-right-button.png"
+        alt="ПКМ"
+        title="Правая кнопка мыши"
+      > — добавить в поле ввода
+    </span>
+  </div>
   <div v-if="customStickers.list.length" class="pack">
     <h3>{{ customStickers.title }}</h3>
     <ul class="stickers">
@@ -11,7 +27,7 @@
         <img
           :src="getIcon(sticker.icon)"
           :alt="sticker.title"
-          :title="getTitle(sticker.title)"
+          :title="sticker.title"
           :style="getStyle(sticker.size)"
         >
       </li>
@@ -33,7 +49,7 @@
         <img
           :src="getIcon(sticker.icon)"
           :alt="sticker.title"
-          :title="getTitle(sticker.title)"
+          :title="sticker.title"
           :style="getStyle(sticker.size)"
         >
       </li>
@@ -65,13 +81,6 @@ export default {
       const path = config.handler.replace('index.html', '').replace('index.php', '')
       const fullPath = [path, icon].join('');
       return icon.includes('http') ? icon : fullPath;
-    },
-    getTitle(title) {
-      return [
-        title,
-        'ЛКМ — отправить в чат',
-        'ПКМ — добавить в поле ввода',
-      ].filter((text) => text).join('\n');
     },
   },
   computed: {
@@ -108,6 +117,11 @@ html
   overflow initial
 #app
   min-width initial
+.howto
+  background-color #ffffff
+  &__item
+    display flex
+    align-items center
 .pack h3
   display inline-block
   background-color #ffffff

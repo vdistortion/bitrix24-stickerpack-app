@@ -125,6 +125,7 @@ export default {
     transform translateX(-50%)
     background-color #FFFFFF
     width 300px
+    border-radius 4px
   &__body
     margin 10px 0
   &__image

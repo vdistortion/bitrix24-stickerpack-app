@@ -5,10 +5,11 @@
         :is-popup="popup"
         @copy-code="onCopy"
         @add-sticker="onAddSticker"
-        @open-popup="popup = true"
         @close-popup="popup = false"
       >
-        <h1 class="header__title">bitrix24-stickerpack-bot</h1>
+        <h1 class="header__title">
+          {{ isMarketplace ? '' : 'bitrix24-stickerpack-bot' }}
+        </h1>
       </app-panel>
     </div>
   </header>
@@ -67,10 +68,14 @@ export default {
       this.customStickers.list = this.customStickers.list.filter((item) => item !== sticker);
       this.onSave();
     },
+    setTitle() {
+      const title = this.isMarketplace ? 'Секретный бот 🤖' : config.global.appName;
+      this.$BX24.setTitle(title);
+    },
   },
   computed: {
     stickers() {
-      if (this.state === 'marketplace') return marketplace;
+      if (this.isMarketplace) return marketplace;
       return stickers;
     },
     text() {
@@ -84,12 +89,18 @@ export default {
 
       return text.join('');
     },
+    isMarketplace() {
+      return this.state === 'marketplace';
+    },
   },
   created() {
+    this.$BX24.setTitle(config.global.appName);
+
     document.addEventListener('keydown', (e) => {
       if (e.ctrlKey && e.shiftKey && e.code === 'KeyT') {
         e.preventDefault();
-        this.state = this.state === 'marketplace' ? 'default' : 'marketplace';
+        this.setTitle();
+        this.state = this.isMarketplace ? 'default' : 'marketplace';
       }
     });
   },
@@ -103,6 +114,7 @@ export default {
       popup: false,
     };
   },
+  inject: ['$BX24'],
   components: {
     AppPanel,
     AppGrid,
