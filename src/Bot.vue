@@ -31,6 +31,15 @@
           :style="getStyle(sticker.size)"
         >
       </li>
+      <li>
+        <a
+          v-if="appLink"
+          :href="appLink"
+          target="_blank"
+          class="link"
+          title="Перейти в приложение и добавить стикер в текущий браузер"
+        >+</a>
+      </li>
     </ul>
   </div>
   <div
@@ -62,6 +71,9 @@ import config from './config';
 import stickers, { marketplace } from './packs';
 import api from './api';
 
+const search = new URLSearchParams(window.location.search);
+const domain = search.get('DOMAIN');
+
 export default {
   methods: {
     onClick(action, icon, title = 'Noname Sticker', size = this.size) {
@@ -87,6 +99,9 @@ export default {
     stickers() {
       if (this.state === 'marketplace') return marketplace;
       return stickers;
+    },
+    appLink() {
+      return domain ? `${domain}/marketplace/app/sozdavatel.stickers/` : '';
     },
   },
   created() {
@@ -122,9 +137,25 @@ html
   &__item
     display flex
     align-items center
-.pack h3
-  display inline-block
-  background-color #ffffff
+.pack
+  h3
+    display inline-block
+    background-color #ffffff
+  a.link
+    padding 10px
+    border-radius 4px
+    box-shadow 0 3px 1px -2px #0003,0 2px 2px #00000024,0 1px 5px #0000001f
+    height 70px
+    width 70px
+    display inline-block
+    text-align center
+    line-height 2
+    color #000
+    background-color rgba(#fff, .4)
+    text-decoration none
+    font-size 35px
+    &:hover
+      background-color #fff
 .stickers
   display flex
   flex-wrap wrap
