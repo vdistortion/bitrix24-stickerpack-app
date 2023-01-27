@@ -22,6 +22,10 @@
         class="card__image"
         :src="icon"
         :alt="title"
+        :style="{
+          width: `${size}px`,
+          height: `${size}px`,
+        }"
       >
     </label>
   </div>
@@ -44,6 +48,10 @@ export default {
       required: true,
     },
     title: {
+      type: String,
+      required: true,
+    },
+    size: {
       type: String,
       required: true,
     },

@@ -10,6 +10,7 @@
           name="close-circle"
           @click="onClose"
         ></app-icon>
+        <span class="popup__title">Добавить стикер</span>
       </div>
       <div class="popup__body">
         <table>
@@ -18,10 +19,14 @@
               <th colspan="2">
                 <div class="popup__image">
                   <img
+                    v-if="icon"
                     :src="icon"
                     :alt="title"
                     :title="title"
-                    :style="`width: ${sizes[size]}px`"
+                    :style="{
+                      width: `${sizes[size]}px`,
+                      height: `${sizes[size]}px`,
+                    }"
                   >
                 </div>
               </th>
@@ -34,7 +39,7 @@
                 <input
                   v-model="icon"
                   type="text"
-                  placeholder="URL (обязательно)"
+                  placeholder="Ссылка на изображение"
                 >
               </td>
             </tr>
@@ -126,10 +131,16 @@ export default {
     background-color #FFFFFF
     width 300px
     border-radius 4px
+  &__title
+    font-weight bold
+    margin-left 10px
   &__body
     margin 10px 0
   &__image
-    min-height 100px
+    display flex
+    justify-content center
+    align-items center
+    min-height 120px
   &__footer
     display flex
     column-gap 10px
