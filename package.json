@@ -10,7 +10,7 @@
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore",
     "grid": "node smartgrid.js",
     "grep": "sh grep.sh",
-    "public": "npm run build && node gh-pages.js"
+    "public": "npm run build && gh-pages -d dist"
   },
   "dependencies": {
     "archiver": "^5.3.1",
