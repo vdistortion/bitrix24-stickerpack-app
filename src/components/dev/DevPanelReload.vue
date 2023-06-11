@@ -1,7 +1,5 @@
 <template>
-  <a href="#" title="Обновить (Ctrl+R)" @click.prevent="reload">
-    <span class="mdi mdi-reload"></span>
-  </a>
+  <a href="#" title="Обновить (Ctrl+R)" @click.prevent="reload">&#x21bb;</a>
 </template>
 
 <script>

@@ -10,8 +10,11 @@ function frameCommunicationInit() {
       let data = {};
 
       try {
-        data = JSON.parse(event.data);
-      } catch (err) {}
+        const index = event.data.indexOf('{');
+        data = JSON.parse(event.data.slice(index));
+      } catch (error) {
+        console.warn(error.message);
+      }
 
       if (data.action === 'init') {
         window.frameCommunication.uniqueLoadId = data.uniqueLoadId;

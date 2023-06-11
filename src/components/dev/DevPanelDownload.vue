@@ -1,7 +1,9 @@
 <template>
-  <a :href="dirname" :title="'Скачать последнюю версию '+filename" :download="filename">
-    <span class="mdi mdi-download"></span>
-  </a>
+  <a
+    :href="dirname"
+    :download="filename"
+    title="Скачать последнюю версию"
+  >&#10515;</a>
 </template>
 
 <script>
@@ -10,10 +12,10 @@ import config from '../../config';
 export default {
   computed: {
     dirname() {
-      return [config.path, config.global.archiveName].join('');
+      return [config.path.root, config.global.archiveName].join('');
     },
     filename() {
-      return config.global.archiveHashName;
+      return `${config.global.appDirName}, ${new Date().toLocaleString()}.zip`;
     },
   },
   name: 'dev-panel-download',

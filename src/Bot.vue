@@ -31,15 +31,6 @@
           :style="getStyle(sticker.size)"
         >
       </li>
-      <li>
-        <a
-          v-if="appLink"
-          :href="appLink"
-          target="_blank"
-          class="link"
-          title="Перейти в приложение и добавить стикер в текущий браузер"
-        >+</a>
-      </li>
     </ul>
   </div>
   <div
@@ -71,9 +62,6 @@ import config from './config';
 import stickers, { marketplace } from './packs';
 import api from './api';
 
-const search = new URLSearchParams(window.location.search);
-const domain = search.get('DOMAIN');
-
 export default {
   methods: {
     onClick(action, icon, title = 'Noname Sticker', size = this.size) {
@@ -90,8 +78,7 @@ export default {
       };
     },
     getIcon(icon) {
-      const path = config.handler.replace('index.html', '').replace('index.php', '')
-      const fullPath = [path, icon].join('');
+      const fullPath = [config.path, icon].join('');
       return icon.includes('http') ? icon : fullPath;
     },
   },
@@ -99,9 +86,6 @@ export default {
     stickers() {
       if (this.state === 'marketplace') return marketplace;
       return stickers;
-    },
-    appLink() {
-      return domain ? `${domain}/marketplace/app/sozdavatel.stickers/` : '';
     },
   },
   created() {

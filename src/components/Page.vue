@@ -45,8 +45,7 @@ import api from '../api';
 export default {
   methods: {
     getIcon({ icon, size = 100, title = 'Noname' }) {
-      const relativePath = config.handler.replace('index.html', '').replace('index.php', '')
-      const fullPath = [relativePath, icon].join('');
+      const fullPath = [config.path, icon].join('');
       const path = icon.includes('http') ? icon : fullPath;
       return `[icon=${path} size=${size} title=${title}]`;
     },

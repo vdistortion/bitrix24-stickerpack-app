@@ -15,7 +15,7 @@ export default () => ({
         method: 'imbot.register',
         params: {
           CODE: config.global.appCodeName,
-          EVENT_HANDLER: config.eventHandler,
+          EVENT_HANDLER: config.handler,
           PROPERTIES: {
             NAME: config.global.appName,
           },

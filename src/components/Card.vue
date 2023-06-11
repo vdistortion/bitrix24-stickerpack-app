@@ -23,8 +23,8 @@
         :src="icon"
         :alt="title"
         :style="{
-          width: `${size}px`,
-          height: `${size}px`,
+          width: size ? `${size}px` : null,
+          height: size ? `${size}px` : null,
         }"
       >
     </label>
@@ -32,13 +32,13 @@
 </template>
 
 <script>
-import utils from '../utils/helpers.js';
+import { v4 as uuid } from 'uuid';
 import AppIcon from './Icon.vue';
 
 export default {
   data() {
     return {
-      id: utils.uuid(),
+      id: uuid(),
       active: this.selected,
     };
   },
