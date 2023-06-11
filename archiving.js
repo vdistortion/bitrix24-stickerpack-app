@@ -27,4 +27,5 @@ list.forEach(({ file, name }) => {
 });
 
 archive.pipe(output);
-archive.finalize().catch(window.console.warn);
+// eslint-disable-next-line no-console
+archive.finalize().catch(console.warn);
