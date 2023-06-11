@@ -24,6 +24,7 @@
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.2.3",
+    "autoprefixer": "^10.4.14",
     "eslint": "^8.42.0",
     "eslint-plugin-vue": "^9.14.1",
     "gh-pages": "^5.0.0",
