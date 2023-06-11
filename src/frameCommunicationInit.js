@@ -13,7 +13,7 @@ function frameCommunicationInit() {
         const index = event.data.indexOf('{');
         data = JSON.parse(event.data.slice(index));
       } catch (error) {
-        console.warn(error.message);
+        window.console.warn(error.message);
       }
 
       if (data.action === 'init') {
@@ -26,7 +26,9 @@ function frameCommunicationInit() {
 }
 
 // функция отправки данных в основное окно
+// eslint-disable-next-line consistent-return
 window.frameCommunicationSend = function frameCommunicationSend(data) {
+  // eslint-disable-next-line no-param-reassign
   data.uniqueLoadId = window.frameCommunication.uniqueLoadId;
   const encodedData = JSON.stringify(data);
 

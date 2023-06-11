@@ -1,10 +1,11 @@
 import fs from 'fs';
 import archiver from 'archiver';
+// eslint-disable-next-line import/extensions
 import { archiveName } from './getNames.js';
 
 const archive = archiver('zip', { zlib: { level: 9 } });
 const output = fs.createWriteStream(archiveName);
-const path = (path) => ['dist', path].join('/');
+const path = (name) => ['dist', name].join('/');
 const list = [
   {
     file: false,
@@ -26,4 +27,4 @@ list.forEach(({ file, name }) => {
 });
 
 archive.pipe(output);
-archive.finalize().catch(console.warn);
+archive.finalize().catch(window.console.warn);

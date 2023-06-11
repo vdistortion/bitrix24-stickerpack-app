@@ -1,4 +1,5 @@
 import { createApp } from 'vue';
+// eslint-disable-next-line import/no-unresolved
 import Bitrix24 from 'vue-bitrix24/Library';
 import App from './App.vue';
 import Bot from './Bot.vue';

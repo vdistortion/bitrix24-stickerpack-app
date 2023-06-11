@@ -1,4 +1,5 @@
-import { marketplace } from '@/packs';
+import { marketplace } from './packs';
+
 const fullPath = [window.location.origin, window.location.pathname].join('');
 const rootPath = fullPath
   .replace('dist/index.html', '')

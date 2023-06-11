@@ -17,7 +17,7 @@
       :key="sticker.icon"
       :icon="sticker.icon"
       :title="sticker.title"
-      :size="sticker.size || ''"
+      :size="`${sticker.size}` || ''"
       :is-custom="isAdd"
       selected
       class="grid__item"

@@ -16,5 +16,11 @@
     "vue"
   ],
   "rules": {
+    "import/no-extraneous-dependencies": ["error", {
+      "devDependencies": ["*.js"]
+    }],
+    "camelcase": ["error", {
+      "ignoreDestructuring": true
+    }]
   }
 }

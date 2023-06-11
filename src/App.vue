@@ -11,8 +11,8 @@ import BitrixBatch from './api/bitrix';
 export default {
   methods: {
     init() {
-      const { member_id } = this.$BX24.getAuth();
-      this.hash = member_id;
+      const { member_id: memberId } = this.$BX24.getAuth();
+      this.hash = memberId;
       this.batch = new BitrixBatch(this.$BX24, this.$BX24.isAdmin());
 
       return this.batch.getBotId().then((result) => {
@@ -20,17 +20,16 @@ export default {
 
         if (result.botId) {
           return this.batch.app(result.botId, this.hash)
-            .then((result) => this.batch.appUpdate(result.app, this.hash));
-        } else {
-          return this.batch.add()
-            .then((result) => this.batch.app(result.add, this.hash))
-            .then((result) => this.batch.appUpdate(result.app, this.hash));
+            .then((data) => this.batch.appUpdate(data.app, this.hash));
         }
+        return this.batch.add()
+          .then((data) => this.batch.app(data.add, this.hash))
+          .then((data) => this.batch.appUpdate(data.app, this.hash));
       });
     },
   },
   mounted() {
-    this.init().then(console.log).catch(console.warn);
+    this.init().then(window.console.info).catch(window.console.warn);
   },
   data() {
     return {
@@ -47,7 +46,6 @@ export default {
   name: 'app',
 };
 </script>
-
 
 <style lang="stylus">
 @require './assets/smartgrid.styl'
