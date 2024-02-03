@@ -62,7 +62,7 @@ export default {
     },
     setTitle() {
       const title = this.isMarketplace ? 'Секретный бот 🤖' : config.global.appName;
-      this.$BX24.setTitle(title);
+      if (this.$BX24) this.$BX24.setTitle(title);
     },
   },
   computed: {
@@ -86,7 +86,7 @@ export default {
     },
   },
   created() {
-    this.$BX24.setTitle(config.global.appName);
+    if (this.$BX24) this.$BX24.setTitle(config.global.appName);
 
     document.addEventListener('keydown', (e) => {
       if (e.ctrlKey && e.shiftKey && e.code === 'KeyT') {

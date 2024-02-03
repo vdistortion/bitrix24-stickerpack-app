@@ -13,7 +13,7 @@ import env from '../../env';
 export default {
   computed: {
     isVisible() {
-      return env.get('TEST_DOMAINS').includes(this.$BX24.getDomain());
+      return this.$BX24 ? env.get('TEST_DOMAINS').includes(this.$BX24.getDomain()) : false;
     },
   },
   inject: ['$BX24'],

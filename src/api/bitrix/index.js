@@ -13,6 +13,10 @@ export default class BitrixBatch {
     return this.batch(this.requestList.sendMessage(message));
   }
 
+  getList() {
+    return this.batch(this.requestList.getList());
+  }
+
   app() {
     return this.batch(this.requestList.app());
   }
