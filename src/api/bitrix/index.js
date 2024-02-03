@@ -9,27 +9,15 @@ export default class BitrixBatch {
     this.requestList = getRequestList(isAdmin);
   }
 
-  getBotId() {
-    return this.batch(this.requestList.getBotId());
+  sendMessage(message) {
+    return this.batch(this.requestList.sendMessage(message));
   }
 
-  add() {
-    return this.batch(this.requestList.add());
+  app() {
+    return this.batch(this.requestList.app());
   }
 
-  delete(botId) {
-    return this.batch(this.requestList.delete(botId));
-  }
-
-  app(botId, hash) {
-    return this.batch(this.requestList.app(botId, hash));
-  }
-
-  appUpdate(appId, hash) {
-    return this.batch(this.requestList.appUpdate(appId, hash));
-  }
-
-  deleteApp(appId) {
-    return this.batch(this.requestList.deleteApp(appId));
+  deleteApp() {
+    return this.batch(this.requestList.deleteApp());
   }
 }

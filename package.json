@@ -14,7 +14,6 @@
   },
   "dependencies": {
     "archiver": "^5.3.1",
-    "copy-to-clipboard": "^3.3.3",
     "uuid": "^9.0.0",
     "vue": "^3.3.4",
     "vue-bitrix24": "^0.1.4"
