@@ -13,6 +13,14 @@ export default () => ({
       },
     };
   },
+  getList() {
+    return {
+      list: {
+        method: 'placement.get',
+        params: {},
+      },
+    };
+  },
   app() {
     return {
       app: {

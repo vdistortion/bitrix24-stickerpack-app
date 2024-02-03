@@ -12,11 +12,17 @@ export default {
   methods: {
     init() {
       const batch = new BitrixBatch(this.$BX24, this.$BX24.isAdmin());
-      return batch.app().then(window.console.info).catch(window.console.warn);
+
+      return batch.getList().then(({ list }) => {
+        const isApp = list.find((item) => item.placement === 'IM_SMILES_SELECTOR');
+
+        if (!isApp) return batch.app();
+        return Promise.resolve();
+      });
     },
   },
   mounted() {
-    this.init().then(window.console.info).catch(window.console.warn);
+    if (this.$BX24) this.init().catch(window.console.warn);
   },
   inject: ['$BX24'],
   components: {
