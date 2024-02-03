@@ -11,32 +11,12 @@ import BitrixBatch from './api/bitrix';
 export default {
   methods: {
     init() {
-      const { member_id: memberId } = this.$BX24.getAuth();
-      this.hash = memberId;
-      this.batch = new BitrixBatch(this.$BX24, this.$BX24.isAdmin());
-
-      return this.batch.getBotId().then((result) => {
-        this.botId = result.botId;
-
-        if (result.botId) {
-          return this.batch.app(result.botId, this.hash)
-            .then((data) => this.batch.appUpdate(data.app, this.hash));
-        }
-        return this.batch.add()
-          .then((data) => this.batch.app(data.add, this.hash))
-          .then((data) => this.batch.appUpdate(data.app, this.hash));
-      });
+      const batch = new BitrixBatch(this.$BX24, this.$BX24.isAdmin());
+      return batch.app().then(window.console.info).catch(window.console.warn);
     },
   },
   mounted() {
     this.init().then(window.console.info).catch(window.console.warn);
-  },
-  data() {
-    return {
-      batch: null,
-      botId: null,
-      hash: '',
-    };
   },
   inject: ['$BX24'],
   components: {

@@ -1,93 +1,49 @@
 import config from '../../config';
-import icon from '../../assets/icon.png';
-
-const file = icon.replace('data:image/png;base64,', '');
 
 export default () => ({
-  getBotId() {
+  sendMessage(message) {
     return {
-      botId: ['imbot.bot.list'],
-    };
-  },
-  add() {
-    return {
-      add: {
-        method: 'imbot.register',
+      message: {
+        method: 'im.message.add',
         params: {
-          CODE: config.global.appCodeName,
-          EVENT_HANDLER: config.handler,
-          PROPERTIES: {
-            NAME: config.global.appName,
-          },
+          DIALOG_ID: 1,
+          SYSTEM: 'Y',
+          MESSAGE: message,
         },
       },
     };
   },
-  delete(botId) {
-    return {
-      deleteBot: {
-        method: 'imbot.unregister',
-        params: {
-          BOT_ID: botId,
-        },
-      },
-    };
-  },
-  app(botId, hash) {
+  app() {
     return {
       app: {
-        method: 'imbot.app.register',
+        method: 'placement.bind',
         params: {
-          BOT_ID: botId,
-          CODE: config.global.appCodeName,
-          IFRAME: config.handler,
-          HASH: hash,
-          ICON_FILE: file,
-          LANG: [
-            {
-              LANGUAGE_ID: 'ru',
+          PLACEMENT: 'IM_SMILES_SELECTOR',
+          HANDLER: config.handler,
+          LANG_ALL: {
+            ru: {
               TITLE: config.global.appName,
             },
-            {
-              LANGUAGE_ID: 'en',
+            en: {
               TITLE: config.global.appNameEng,
             },
-          ],
-        },
-      },
-    };
-  },
-  appUpdate(appId, hash) {
-    return {
-      appUpdate: {
-        method: 'imbot.app.update',
-        params: {
-          APP_ID: appId,
-          FIELDS: {
-            IFRAME: config.handler,
-            HASH: hash,
-            ICON_FILE: file,
-            LANG: [
-              {
-                LANGUAGE_ID: 'ru',
-                TITLE: config.global.appName,
-              },
-              {
-                LANGUAGE_ID: 'en',
-                TITLE: config.global.appNameEng,
-              },
-            ],
+          },
+          OPTIONS: {
+            context: 'ALL',
+            role: 'USER',
+            extranet: 'N',
           },
         },
       },
     };
   },
-  deleteApp(appId) {
+  deleteApp() {
     return {
       deleteApp: {
-        method: 'imbot.app.unregister',
+        method: 'placement.unbind',
         params: {
-          APP_ID: appId,
+          PLACEMENT: 'IM_SMILES_SELECTOR',
+          HANDLER: config.handler,
         },
       },
     };

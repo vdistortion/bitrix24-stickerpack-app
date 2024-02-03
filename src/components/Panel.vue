@@ -3,13 +3,7 @@
     <div class="panel__item left">
       <slot></slot>
     </div>
-    <div class="panel__item right">
-      <app-button
-        icon="content-copy"
-        title="Копировать код для вставки в чат Битрикса24"
-        @click="$emit('copy-code')"
-      >Копировать код</app-button>
-    </div>
+    <div class="panel__item right"></div>
     <teleport to="#modals">
       <app-popup
         v-if="isPopup"
@@ -21,7 +15,6 @@
 </template>
 
 <script>
-import AppButton from './Button.vue';
 import AppPopup from './Popup.vue';
 
 export default {
@@ -32,7 +25,6 @@ export default {
     },
   },
   components: {
-    AppButton,
     AppPopup,
   },
   name: 'app-panel',

@@ -1,5 +1,3 @@
-import { marketplace } from './packs';
-
 const fullPath = [window.location.origin, window.location.pathname].join('');
 const rootPath = fullPath
   .replace('dist/index.html', '')
@@ -9,8 +7,8 @@ const rootPath = fullPath
 
 export default {
   global: {
-    appName: `Стикеры в Битрикс24 (${marketplace.length} наборов)`,
-    appNameEng: `Bitrix24 Stickers (${marketplace.length} packs)`,
+    appName: 'Стикеры',
+    appNameEng: 'Stickers',
     appCodeName: 'bitrix24-stickerpack-bot',
     appDirName: window.DIRNAME_APP,
     archiveName: window.ARCHIVE_NAME,

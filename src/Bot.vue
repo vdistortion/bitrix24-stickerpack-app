@@ -7,13 +7,6 @@
         title="Левая кнопка мыши"
       > — отправить в чат
     </span>
-    <span class="howto__item">
-      <img
-        src="./assets/free-icon-mouse-right-button.png"
-        alt="ПКМ"
-        title="Правая кнопка мыши"
-      > — добавить в поле ввода
-    </span>
   </div>
   <div v-if="customStickers.list.length" class="pack">
     <h3>{{ customStickers.title }}</h3>
@@ -21,8 +14,7 @@
       <li
         v-for="(sticker, key) in customStickers.list"
         :key="key"
-        @click="onClick('send', sticker.icon, sticker.title, sticker.size)"
-        @contextmenu.prevent="onClick('put', sticker.icon, sticker.title, sticker.size)"
+        @click="sendMessage(sticker.icon, sticker.title, sticker.size)"
       >
         <img
           :src="getIcon(sticker.icon)"
@@ -43,8 +35,7 @@
       <li
         v-for="(sticker, key) in pack.list"
         :key="key"
-        @click="onClick('send', sticker.icon, sticker.title, sticker.size)"
-        @contextmenu.prevent="onClick('put', sticker.icon, sticker.title, sticker.size)"
+        @click="sendMessage(sticker.icon, sticker.title, sticker.size)"
       >
         <img
           :src="getIcon(sticker.icon)"
@@ -61,15 +52,15 @@
 import config from './config';
 import stickers, { marketplace } from './packs';
 import api from './api';
+import BitrixBatch from './api/bitrix';
 
 export default {
   methods: {
-    onClick(action, icon, title = 'Noname Sticker', size = this.size) {
-      this.sendMessage(action, `[icon=${this.getIcon(icon)} size=${size} title=${title}]`);
-    },
-    sendMessage(action, message) {
-      window.frameCommunicationSend({ action, message });
-      window.frameCommunicationSend({ action: 'close' });
+    sendMessage(icon, title = 'Noname Sticker', size = this.size) {
+      const batch = new BitrixBatch(this.$BX24, this.$BX24.isAdmin());
+      return batch.sendMessage(`[icon=${this.getIcon(icon)} size=${size} title=${title}]`)
+        .then(window.console.info)
+        .catch(window.console.warn);
     },
     getStyle(size = this.size) {
       return {
@@ -106,6 +97,7 @@ export default {
       size: 100,
     };
   },
+  inject: ['$BX24'],
   name: 'app-bot',
 };
 </script>
@@ -116,6 +108,7 @@ html
   overflow initial
 #app
   min-width initial
+  margin 5px
 .howto
   background-color #ffffff
   &__item
@@ -143,7 +136,7 @@ html
 .stickers
   display flex
   flex-wrap wrap
-  column-gap 20px
+  column-gap 5px
   list-style-type none
   padding-left 0
 </style>

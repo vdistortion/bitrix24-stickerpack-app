@@ -3,13 +3,10 @@
     <div class="l-wrapper">
       <app-panel
         :is-popup="popup"
-        @copy-code="onCopy"
         @add-sticker="onAddSticker"
         @close-popup="popup = false"
       >
-        <h1 class="header__title">
-          {{ isMarketplace ? '' : 'bitrix24-stickerpack-bot' }}
-        </h1>
+        <h1 class="header__title">bitrix24-stickerpack-bot</h1>
       </app-panel>
     </div>
   </header>
@@ -35,7 +32,6 @@
 </template>
 
 <script>
-import copy from 'copy-to-clipboard';
 import AppPanel from './Panel.vue';
 import AppGrid from './Grid.vue';
 import config from '../config';
@@ -48,9 +44,6 @@ export default {
       const fullPath = [config.path, icon].join('');
       const path = icon.includes('http') ? icon : fullPath;
       return `[icon=${path} size=${size} title=${title}]`;
-    },
-    onCopy() {
-      copy(this.text);
     },
     onSave() {
       api.set(this.customStickers.list);
