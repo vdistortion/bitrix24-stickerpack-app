@@ -51,7 +51,6 @@ export default () => ({
         method: 'placement.unbind',
         params: {
           PLACEMENT: 'IM_SMILES_SELECTOR',
-          HANDLER: config.handler,
         },
       },
     };
