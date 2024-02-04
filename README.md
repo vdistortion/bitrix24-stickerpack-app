@@ -1,9 +1,11 @@
-### bitrix24-stickerpack-bot
+### bitrix24-stickerpack-app
 
 * [Material Design Icons](https://materialdesignicons.com/)
-* [Бот платформа Битрикс24](https://bitrix24.ru/~bot)
-* [Приложения для чата](https://dev.1c-bitrix.ru/learning/course/index.php?COURSE_ID=93&CHAPTER_ID=09297&LESSON_PATH=7657.9297)
-* [Как добавить свои смайлики в Мессенджер](https://helpdesk.bitrix24.ru/open/5270441/)
+* [Приложения для нового чата](https://dev.1c-bitrix.ru/learning/course/index.php?COURSE_ID=93&CHAPTER_ID=017254&LESSON_PATH=7657.17254)
+
+#### SCOPE
+* im
+* placement
 
 ___
 

@@ -1,13 +1,13 @@
 import config from '../../config';
 
 export default () => ({
-  sendMessage(message) {
+  sendMessage(dialogId, message) {
     return {
       message: {
         method: 'im.message.add',
         params: {
-          DIALOG_ID: 1,
-          SYSTEM: 'Y',
+          DIALOG_ID: dialogId,
+          SYSTEM: 'N',
           MESSAGE: message,
         },
       },
@@ -51,7 +51,6 @@ export default () => ({
         method: 'placement.unbind',
         params: {
           PLACEMENT: 'IM_SMILES_SELECTOR',
-          HANDLER: config.handler,
         },
       },
     };

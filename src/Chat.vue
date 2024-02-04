@@ -57,9 +57,10 @@ import BitrixBatch from './api/bitrix';
 export default {
   methods: {
     sendMessage(icon, title = 'Noname Sticker', size = this.size) {
+      const { options } = this.$BX24.placement.info();
       const batch = new BitrixBatch(this.$BX24, this.$BX24.isAdmin());
-      return batch.sendMessage(`[icon=${this.getIcon(icon)} size=${size} title=${title}]`)
-        .then(window.console.info)
+
+      return batch.sendMessage(options.dialogId, `[icon=${this.getIcon(icon)} size=${size} title=${title}]`)
         .catch(window.console.warn);
     },
     getStyle(size = this.size) {
@@ -98,7 +99,7 @@ export default {
     };
   },
   inject: ['$BX24'],
-  name: 'app-bot',
+  name: 'app-chat',
 };
 </script>
 

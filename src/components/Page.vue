@@ -6,7 +6,7 @@
         @add-sticker="onAddSticker"
         @close-popup="popup = false"
       >
-        <h1 class="header__title">bitrix24-stickerpack-bot</h1>
+        <h1 class="header__title">{{ appName }}</h1>
       </app-panel>
     </div>
   </header>
@@ -37,6 +37,7 @@ import AppGrid from './Grid.vue';
 import config from '../config';
 import stickers, { marketplace } from '../packs';
 import api from '../api';
+import env from '../env';
 
 export default {
   methods: {
@@ -98,6 +99,7 @@ export default {
   },
   data() {
     return {
+      appName: env.get('APP_NAME'),
       state: 'marketplace', // default,marketplace
       customStickers: {
         title: 'Свои стикеры',
