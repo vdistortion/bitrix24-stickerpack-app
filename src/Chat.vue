@@ -99,7 +99,7 @@ export default {
     };
   },
   inject: ['$BX24'],
-  name: 'app-bot',
+  name: 'app-chat',
 };
 </script>
 

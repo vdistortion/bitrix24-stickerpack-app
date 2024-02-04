@@ -1,5 +1,5 @@
 {
-  "name": "bitrix24-stickerpack-bot",
+  "name": "bitrix24-stickerpack-app",
   "private": true,
   "type": "module",
   "scripts": {
