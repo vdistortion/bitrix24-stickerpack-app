@@ -9,8 +9,8 @@ export default class BitrixBatch {
     this.requestList = getRequestList(isAdmin);
   }
 
-  sendMessage(message) {
-    return this.batch(this.requestList.sendMessage(message));
+  sendMessage(dialogId, message) {
+    return this.batch(this.requestList.sendMessage(dialogId, message));
   }
 
   getList() {
