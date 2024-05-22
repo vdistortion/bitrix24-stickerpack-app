@@ -1,0 +1,30 @@
+<header class="header">
+  <div class="l-wrapper">
+    <app-panel
+      [isPopup]="popup"
+      (addSticker)="onAddSticker($event)"
+      (closePopup)="popup = false"
+    >
+      <h1 class="header__title">{{ appName }}</h1>
+    </app-panel>
+  </div>
+</header>
+<main class="page">
+  <div class="l-wrapper">
+    <app-grid
+      [title]="customStickers.title"
+      [list]="customStickers.list"
+      [isAdd]="true"
+      (openPopup)="popup = true"
+      (removeSticker)="onRemoveSticker($event)"
+    ></app-grid>
+    @for (pack of stickers; track pack.title+'_'+$index) {
+      <app-grid
+        [title]="pack.title"
+        [list]="pack.list"
+        [link]="pack.link"
+        (toggleSticker)="onToggleSticker($index, $event)"
+      ></app-grid>
+    }
+  </div>
+</main>

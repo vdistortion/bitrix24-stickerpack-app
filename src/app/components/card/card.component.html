@@ -1,0 +1,31 @@
+<div class="card" [class]="{ disabled: !active }" [title]="title">
+  <header class="card__header">
+    @if (isCustom) {
+      <app-icon
+        class="card__icon"
+        name="close-circle"
+        title="Удалить стикер из вашего браузера"
+        (click)="onRemove($event)"
+      ></app-icon>
+    } @else {
+      <input
+        [(ngModel)]="active"
+        [id]="id"
+        type="checkbox"
+        title="Отключить стикер при копировании кода"
+        (click)="onToggle($event)"
+      />
+    }
+  </header>
+  <label [for]="id" class="card__label">
+    <img
+      class="card__image"
+      [src]="getIcon(icon)"
+      [alt]="title"
+      [style]="{
+        width: size ? size+'px' : null,
+        height: size ? size+'px' : null,
+      }"
+    />
+  </label>
+</div>

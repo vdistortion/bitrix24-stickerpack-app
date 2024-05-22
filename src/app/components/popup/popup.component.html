@@ -1,0 +1,69 @@
+<div class="popup">
+  <div class="popup__overlay" (click)="onClose()"></div>
+  <div class="popup__window">
+    <div class="popup__header">
+      <app-icon name="close-circle" (click)="onClose()"></app-icon>
+      <span class="popup__title">Добавить стикер</span>
+    </div>
+    <div class="popup__body">
+      <table>
+        <thead>
+        <tr>
+          <th colspan="2">
+            <div class="popup__image">
+              @if (icon) {
+                <img
+                  [src]="icon"
+                  [alt]="title"
+                  [title]="title"
+                  [style.width]="sizes[size]+'px'"
+                  [style.height]="sizes[size]+'px'"
+                />
+              }
+            </div>
+          </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td>Адрес:</td>
+          <td>
+            <input
+              [(ngModel)]="icon"
+              type="text"
+              placeholder="Ссылка на изображение"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>Описание:</td>
+          <td>
+            <input
+              [(ngModel)]="title"
+              type="text"
+              placeholder="Подсказка при наведении"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>Размер ({{ sizes[size] }}):</td>
+          <td>
+            <input
+              [(ngModel)]="size"
+              type="range"
+              min="0"
+              step="1"
+              max="2"
+            />
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="popup__footer">
+      <app-button icon="plus" [disabled]="!icon" (click)="onAdd()">
+        Добавить стикер
+      </app-button>
+    </div>
+  </div>
+</div>

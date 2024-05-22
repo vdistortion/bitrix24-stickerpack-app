@@ -1,0 +1,44 @@
+<div class="howto">
+    <span class="howto__item">
+      <img
+        src="./assets/free-icon-mouse-left-button.png"
+        alt="ЛКМ"
+        title="Левая кнопка мыши"
+      />
+      — отправить в чат
+    </span>
+</div>
+@if (customStickers.list.length) {
+  <div class="pack">
+    <h3>{{ customStickers.title }}</h3>
+    <ul class="stickers">
+      @for (sticker of customStickers.list; track $index) {
+        <li (click)="sendMessage(sticker.icon, sticker.title, sticker.size)">
+          <img
+            [src]="getIcon(sticker.icon)"
+            [alt]="sticker.title"
+            [title]="sticker.title"
+            [style]="getStyle(sticker.size)"
+          />
+        </li>
+      }
+    </ul>
+  </div>
+}
+@for (pack of stickers; track $index) {
+  <div class="pack">
+    <h3>{{ pack.title }}</h3>
+    <ul class="stickers">
+      @for (sticker of pack.list; track $index) {
+        <li (click)="sendMessage(sticker.icon, sticker.title, sticker.size)">
+          <img
+            [src]="getIcon(sticker.icon)"
+            [alt]="sticker.title"
+            [title]="sticker.title"
+            [style]="getStyle(sticker.size)"
+          />
+        </li>
+      }
+    </ul>
+  </div>
+}

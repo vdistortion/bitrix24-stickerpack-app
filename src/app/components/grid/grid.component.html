@@ -1,0 +1,33 @@
+<div class="grid">
+  <h2 class="grid__title">
+    <span>{{ title }}</span>
+    @if (link) {
+      <a
+        [href]="link"
+        target="_blank"
+        title="Добавить в Telegram"
+        aria-label="Добавить в Telegram"
+      >
+        <app-icon name="open-in-new"></app-icon>
+      </a>
+    }
+  </h2>
+  @for (sticker of list; track sticker.icon; let index = $index) {
+    <app-card
+      [icon]="sticker.icon"
+      [title]="sticker.title"
+      [size]="sticker.size+'' || ''"
+      [isCustom]="isAdd"
+      class="grid__item"
+      (remove)="onRemoveSticker(sticker)"
+      (toggle)="onToggleSticker([index, $event])"
+    ></app-card>
+  }
+  @if (isAdd) {
+    <div
+      class="grid__item add"
+      title="Добавить стикер в текущий браузер"
+      (click)="onOpenPopup()"
+    >+</div>
+  }
+</div>

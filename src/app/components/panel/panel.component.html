@@ -1,0 +1,20 @@
+<div class="panel">
+  <div class="panel__item left">
+    <ng-content></ng-content>
+  </div>
+  @if ($BX24 && isLoaded) {
+    <div class="panel__item right">
+      @if (isInstall) {
+        <app-button (click)="uninstall()">Удалить стикеры из чата</app-button>
+      } @else {
+        <app-button (click)="install()">Установить стикеры в чат</app-button>
+      }
+    </div>
+  }
+  @if (isPopup) {
+    <app-popup
+      (add)="onAddSticker($event)"
+      (close)="onClosePopup()"
+    ></app-popup>
+  }
+</div>

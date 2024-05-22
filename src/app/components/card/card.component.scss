@@ -1,0 +1,30 @@
+.card {
+  text-align: center;
+
+  &:hover,
+  &.disabled {
+    opacity: .5;
+  }
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+    margin-bottom: 5px;
+  }
+
+  &__icon {
+    cursor: pointer;
+  }
+
+  &__label {
+    display: inline-block;
+    max-width: 200px;
+  }
+
+  &__image {
+    max-width: 100%;
+    height: auto;
+    cursor: pointer;
+  }
+}
