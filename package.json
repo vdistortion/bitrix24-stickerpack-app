@@ -1,12 +1,17 @@
 {
   "name": "bitrix24-stickerpack-app",
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "type": "module",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
+    "start": "ng serve --host 0.0.0.0",
+    "build": "ng build && node archiving.js",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "grid": "node grid.js",
+    "grep": "sh grep.sh",
+    "public": "npm run build && gh-pages -d dist/bitrix24-stickerpack-app/browser",
+    "format": "prettier --write src"
   },
   "private": true,
   "dependencies": {
@@ -18,8 +23,11 @@
     "@angular/platform-browser": "^17.3.0",
     "@angular/platform-browser-dynamic": "^17.3.0",
     "@angular/router": "^17.3.0",
+    "archiver": "^7.0.1",
+    "bitrix24-library": "^0.0.2",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
+    "uuid": "^9.0.1",
     "zone.js": "~0.14.3"
   },
   "devDependencies": {
@@ -27,12 +35,16 @@
     "@angular/cli": "^17.3.7",
     "@angular/compiler-cli": "^17.3.0",
     "@types/jasmine": "~5.1.0",
+    "@types/node": "^20.12.12",
+    "gh-pages": "^6.1.1",
     "jasmine-core": "~5.1.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.2.0",
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
+    "prettier": "^3.2.5",
+    "smart-grid": "^2.1.2",
     "typescript": "~5.4.2"
   }
 }
