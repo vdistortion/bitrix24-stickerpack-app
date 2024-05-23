@@ -10,5 +10,6 @@ import { IconComponent } from '../icon/icon.component';
 })
 export class ButtonComponent {
   @Input() public icon: string = '';
+  @Input() public type: 'button' | 'submit' | 'reset' = 'button';
   @Input() public disabled: boolean = false;
 }
