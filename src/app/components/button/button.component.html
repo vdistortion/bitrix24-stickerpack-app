@@ -1,6 +1,10 @@
 <button class="button" [type]="type" [disabled]="disabled">
   @if (icon) {
-    <app-icon class="button__icon" [path]="icon" style="position: relative;top:3px;"></app-icon>
+    <app-icon
+      class="button__icon"
+      [path]="icon"
+      style="position: relative; top: 3px"
+    ></app-icon>
   }
   <span class="button__text">
     <ng-content></ng-content>

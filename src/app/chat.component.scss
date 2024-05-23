@@ -26,14 +26,17 @@ html {
   a.link {
     padding: 10px;
     border-radius: 4px;
-    box-shadow: 0 3px 1px -2px #0003,0 2px 2px #00000024,0 1px 5px #0000001f;
+    box-shadow:
+      0 3px 1px -2px #0003,
+      0 2px 2px #00000024,
+      0 1px 5px #0000001f;
     height: 70px;
     width: 70px;
     display: inline-block;
     text-align: center;
     line-height: 2;
     color: #000;
-    background-color: rgba(#fff, .4);
+    background-color: rgba(#fff, 0.4);
     text-decoration: none;
     font-size: 35px;
 

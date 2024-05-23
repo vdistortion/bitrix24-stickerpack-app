@@ -6,7 +6,10 @@
       (closePopup)="popup = false"
     >
       <h1 class="header__title">
-        <app-icon path="mdiAngular" style="position: relative;top:5px;"></app-icon>
+        <app-icon
+          path="mdiAngular"
+          style="position: relative; top: 5px"
+        ></app-icon>
         {{ appName }}
       </h1>
     </app-panel>
@@ -21,7 +24,7 @@
       (openPopup)="popup = true"
       (removeSticker)="onRemoveSticker($event)"
     ></app-grid>
-    @for (pack of stickers; track pack.title+'_'+$index) {
+    @for (pack of stickers; track pack.title + '_' + $index) {
       <app-grid
         [title]="pack.title"
         [list]="pack.list"
