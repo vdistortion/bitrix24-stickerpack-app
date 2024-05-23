@@ -3,11 +3,11 @@
   "link": "",
   "list": [
     {
-      "icon": "assets/stickers/imade.webp",
+      "icon": "stickers/imade.webp",
       "title": "Я сделяль"
     },
     {
-      "icon": "assets/smiles/crazy2.gif",
+      "icon": "smiles/crazy2.gif",
       "title": "crazy2",
       "size": 27
     }
