@@ -5,67 +5,72 @@
       <app-icon
         path="mdiCloseCircle"
         (click)="onClose()"
-        style="cursor: pointer;"
+        style="cursor: pointer"
       ></app-icon>
       <span class="popup__title">Добавить стикер</span>
     </div>
     <div class="popup__body">
       <table>
         <thead>
-        <tr>
-          <th colspan="2">
-            @if (form.get('icon')?.value) {
-              <div class="popup__image">
-                <img
-                  [src]="form.get('icon')?.value"
-                  [alt]="form.get('title')?.value"
-                  [title]="form.get('title')?.value"
-                  [style.width]="sizes[form.get('size')?.value]+'px'"
-                  [style.height]="sizes[form.get('size')?.value]+'px'"
-                />
-              </div>
-            }
-          </th>
-        </tr>
+          <tr>
+            <th colspan="2">
+              @if (form.get('icon')?.value) {
+                <div class="popup__image">
+                  <img
+                    [src]="form.get('icon')?.value"
+                    [alt]="form.get('title')?.value"
+                    [title]="form.get('title')?.value"
+                    [style.width]="sizes[form.get('size')?.value] + 'px'"
+                    [style.height]="sizes[form.get('size')?.value] + 'px'"
+                  />
+                </div>
+              }
+            </th>
+          </tr>
         </thead>
         <tbody>
-        <tr>
-          <td>Адрес:</td>
-          <td>
-            <input
-              formControlName="icon"
-              type="text"
-              placeholder="Ссылка на изображение"
-            />
-          </td>
-        </tr>
-        <tr>
-          <td>Описание:</td>
-          <td>
-            <input
-              formControlName="title"
-              type="text"
-              placeholder="Подсказка при наведении"
-            />
-          </td>
-        </tr>
-        <tr>
-          <td>Размер ({{ sizes[form.get('size')?.value] }}):</td>
-          <td>
-            <input
-              formControlName="size"
-              type="range"
-              min="0"
-              step="1"
-              max="2"
-            />
-          </td>
-        </tr>
+          <tr>
+            <td>Адрес:</td>
+            <td>
+              <input
+                formControlName="icon"
+                type="text"
+                placeholder="Ссылка на изображение"
+              />
+            </td>
+          </tr>
+          <tr>
+            <td>Описание:</td>
+            <td>
+              <input
+                formControlName="title"
+                type="text"
+                placeholder="Подсказка при наведении"
+              />
+            </td>
+          </tr>
+          <tr>
+            <td>Размер ({{ sizes[form.get('size')?.value] }}):</td>
+            <td>
+              <input
+                formControlName="size"
+                type="range"
+                min="0"
+                step="1"
+                max="2"
+              />
+            </td>
+          </tr>
         </tbody>
       </table>
     </div>
     <div class="popup__footer">
-      <app-button icon="mdiPlusThick" type="submit" [disabled]="form.invalid" (click)="onAdd()">
+      <app-button
+        icon="mdiPlusThick"
+        type="submit"
+        [disabled]="form.invalid"
+        (click)="onAdd()"
+      >
         Добавить стикер
       </app-button>
     </div>

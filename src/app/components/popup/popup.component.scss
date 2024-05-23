@@ -6,7 +6,7 @@
     bottom: 0;
     left: 0;
     z-index: 1;
-    background-color: rgba(#000000, .7);
+    background-color: rgba(#000000, 0.7);
   }
 
   &__window {
@@ -16,7 +16,7 @@
     z-index: 1;
     padding: 10px;
     transform: translateX(-50%);
-    background-color: #FFFFFF;
+    background-color: #ffffff;
     width: 300px;
     border-radius: 4px;
   }
@@ -32,7 +32,7 @@
     margin: 10px 0;
   }
 
-  input[type="text"] {
+  input[type='text'] {
     &.ng-invalid.ng-touched {
       border: 1px solid red;
     }
