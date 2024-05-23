@@ -1,19 +1,21 @@
 import { Component } from '@angular/core';
 import { PanelComponent } from '../panel/panel.component';
 import { GridComponent } from '../grid/grid.component';
+import { IconComponent } from '../icon/icon.component';
 import { Bitrix24Service } from '../../services/bitrix24.service';
 import stickers, { ISticker, IStickerPack, marketplace } from '../../../packs';
 import api from '../../../api';
 import config from '../../../config';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-page',
   standalone: true,
-  imports: [PanelComponent, GridComponent],
+  imports: [PanelComponent, GridComponent, IconComponent],
   templateUrl: './page.component.html',
 })
 export class PageComponent {
-  public appName: string = 'bitrix24-stickerpack-app';
+  public appName: string = environment.APP_NAME;
   public state: 'default' | 'marketplace' = 'default';
   public customStickers = {
     title: 'Свои стикеры',
@@ -24,14 +26,14 @@ export class PageComponent {
   private readonly $BX24: any = null;
 
   constructor(private bitrixService: Bitrix24Service) {
-    this.$BX24 = bitrixService.BX24;
+    this.$BX24 = this.bitrixService.BX24;
     if (this.$BX24) this.$BX24.setTitle(config.global.appName);
 
-    bitrixService.BX24?.bind(window, 'keydown', (e: KeyboardEvent) => {
+    this.bitrixService.BX24?.bind(window, 'keydown', (e: KeyboardEvent) => {
       if (e.ctrlKey && e.shiftKey && e.code === 'KeyT') {
         e.preventDefault();
-        this.setTitle();
         this.state = this.isMarketplace ? 'default' : 'marketplace';
+        this.setTitle();
       }
     });
   }
@@ -66,9 +68,11 @@ export class PageComponent {
   }
 
   setTitle() {
-    const title = this.isMarketplace
-      ? 'Секретный бот 🤖'
-      : config.global.appName;
-    if (this.$BX24) this.$BX24.setTitle(title);
+    if (this.$BX24) {
+      const title = this.isMarketplace
+        ? 'Секретный бот 🤖'
+        : config.global.appName;
+      this.$BX24.setTitle(title);
+    }
   }
 }

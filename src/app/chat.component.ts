@@ -22,8 +22,8 @@ export class ChatComponent {
   private readonly $BX24: any = null;
 
   constructor(private bitrixService: Bitrix24Service) {
-    this.$BX24 = bitrixService.BX24;
-    bitrixService.BX24?.bind(window, 'keydown', (e: KeyboardEvent) => {
+    this.$BX24 = this.bitrixService.BX24;
+    this.bitrixService.BX24?.bind(window, 'keydown', (e: KeyboardEvent) => {
       if (e.ctrlKey && e.shiftKey && e.code === 'KeyT') {
         e.preventDefault();
         this.state = this.isMarketplace ? 'default' : 'marketplace';

@@ -2,6 +2,7 @@ import { v4 as uuid } from 'uuid';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { IconComponent } from '../icon/icon.component';
+import { Bitrix24Service } from '../../services/bitrix24.service';
 
 @Component({
   selector: 'app-card',
@@ -19,6 +20,11 @@ export class CardComponent {
   @Input() public isCustom: boolean = false;
   public id: string = uuid();
   public active: boolean = true;
+  protected readonly $BX24: any = null;
+
+  constructor(private bitrixService: Bitrix24Service) {
+    this.$BX24 = this.bitrixService.BX24;
+  }
 
   onRemove(e: Event): void {
     e.stopPropagation();

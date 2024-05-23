@@ -21,7 +21,7 @@ export class AppComponent {
     Bitrix24.init()
       .then((BX24: IBX24) => {
         const info: IPlacement = BX24.placement.info();
-        bitrixService.BX24 = BX24;
+        this.bitrixService.BX24 = BX24;
 
         if (info.placement === 'DEFAULT') this.isApp = true;
         else if (info.placement === 'IM_SMILES_SELECTOR') this.isChat = true;

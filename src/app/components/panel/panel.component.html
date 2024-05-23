@@ -5,16 +5,17 @@
   @if ($BX24 && isLoaded) {
     <div class="panel__item right">
       @if (isInstall) {
-        <app-button (click)="uninstall()">Удалить стикеры из чата</app-button>
+        <app-button icon="mdiRobotDead" (click)="uninstall()">Удалить стикеры из чата</app-button>
       } @else {
-        <app-button (click)="install()">Установить стикеры в чат</app-button>
+        <app-button icon="mdiRobotHappy" (click)="install()">Установить стикеры в чат</app-button>
       }
     </div>
   }
-  @if (isPopup) {
-    <app-popup
-      (add)="onAddSticker($event)"
-      (close)="onClosePopup()"
-    ></app-popup>
-  }
 </div>
+
+@if (isPopup) {
+  <app-popup
+    (add)="onAddSticker($event)"
+    (close)="onClosePopup()"
+  ></app-popup>
+}
