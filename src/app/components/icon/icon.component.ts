@@ -1,15 +1,42 @@
 import { Component, Input } from '@angular/core';
+import {
+  mdiCloseCircle,
+  mdiOpenInNew,
+  mdiPlusThick,
+  mdiDownload,
+  mdiReload,
+} from '@mdi/js';
+
+const icons: { [key: string]: string } = {
+  mdiCloseCircle,
+  mdiOpenInNew,
+  mdiPlusThick,
+  mdiDownload,
+  mdiReload,
+};
 
 @Component({
   selector: 'app-icon',
   standalone: true,
   imports: [],
   templateUrl: './icon.component.html',
+  styleUrl: './icon.component.scss',
 })
 export class IconComponent {
-  @Input({ required: true }) public name: string;
+  @Input({ required: true }) public path: string;
+  @Input() public size: number = 24;
+  @Input() public scale: number = 1;
 
-  get className() {
-    return `mdi-${this.name}`;
+  get d(): string {
+    return icons[this.path];
+  }
+
+  get viewBox() {
+    return `0 0 ${this.size} ${this.size}`;
+  }
+  get styles() {
+    return {
+      transform: `scale(${this.scale}, ${this.scale})`,
+    };
   }
 }

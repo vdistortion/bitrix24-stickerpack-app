@@ -1,13 +1,14 @@
 import { Component } from '@angular/core';
 import { DevPanelReloadComponent } from '../dev-panel-reload/dev-panel-reload.component';
 import { DevPanelDownloadComponent } from '../dev-panel-download/dev-panel-download.component';
+import { IconComponent } from '../../components/icon/icon.component';
 import { Bitrix24Service } from '../../services/bitrix24.service';
 import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'dev-panel',
   standalone: true,
-  imports: [DevPanelReloadComponent, DevPanelDownloadComponent],
+  imports: [DevPanelReloadComponent, DevPanelDownloadComponent, IconComponent],
   templateUrl: './dev-panel.component.html',
   styleUrl: './dev-panel.component.scss',
 })
