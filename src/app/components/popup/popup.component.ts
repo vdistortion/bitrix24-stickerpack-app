@@ -24,7 +24,7 @@ export class PopupComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = new FormGroup({
-      title: new FormControl(null, [Validators.required]),
+      title: new FormControl(null),
       icon: new FormControl(null, [Validators.required]),
       size: new FormControl(0),
     });

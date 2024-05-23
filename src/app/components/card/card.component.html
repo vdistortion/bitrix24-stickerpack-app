@@ -7,7 +7,7 @@
         title="Удалить стикер из вашего браузера"
         (click)="onRemove($event)"
       ></app-icon>
-    } @else {
+    } @else if ($BX24) {
       <input
         [(ngModel)]="active"
         [id]="id"

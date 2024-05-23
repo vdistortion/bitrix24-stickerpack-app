@@ -5,7 +5,10 @@
       (addSticker)="onAddSticker($event)"
       (closePopup)="popup = false"
     >
-      <h1 class="header__title">{{ appName }}</h1>
+      <h1 class="header__title">
+        <app-icon path="mdiAngular" style="position: relative;top:5px;"></app-icon>
+        {{ appName }}
+      </h1>
     </app-panel>
   </div>
 </header>

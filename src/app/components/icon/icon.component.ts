@@ -5,6 +5,9 @@ import {
   mdiPlusThick,
   mdiDownload,
   mdiReload,
+  mdiAngular,
+  mdiRobotDead,
+  mdiRobotHappy,
 } from '@mdi/js';
 
 const icons: { [key: string]: string } = {
@@ -13,6 +16,9 @@ const icons: { [key: string]: string } = {
   mdiPlusThick,
   mdiDownload,
   mdiReload,
+  mdiAngular,
+  mdiRobotDead,
+  mdiRobotHappy,
 };
 
 @Component({

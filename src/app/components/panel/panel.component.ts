@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
 import { ButtonComponent } from '../button/button.component';
 import { PopupComponent } from '../popup/popup.component';
 import { Bitrix24Service } from '../../services/bitrix24.service';
@@ -24,7 +24,7 @@ export class PanelComponent implements OnInit {
   private batch: any = null;
 
   constructor(private bitrixService: Bitrix24Service) {
-    this.$BX24 = bitrixService.BX24;
+    this.$BX24 = this.bitrixService.BX24;
   }
 
   ngOnInit(): void {
