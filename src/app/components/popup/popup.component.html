@@ -2,7 +2,7 @@
   <div class="popup__overlay" (click)="onClose()"></div>
   <form class="popup__window" [formGroup]="form">
     <div class="popup__header">
-      <app-icon name="close-circle" (click)="onClose()"></app-icon>
+      <app-icon path="mdiCloseCircle" (click)="onClose()" style="cursor: pointer;"></app-icon>
       <span class="popup__title">Добавить стикер</span>
     </div>
     <div class="popup__body">
@@ -61,7 +61,7 @@
       </table>
     </div>
     <div class="popup__footer">
-      <app-button icon="plus" type="submit" [disabled]="form.invalid" (click)="onAdd()">
+      <app-button icon="mdiPlusThick" type="submit" [disabled]="form.invalid" (click)="onAdd()">
         Добавить стикер
       </app-button>
     </div>

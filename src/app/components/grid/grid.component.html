@@ -8,7 +8,7 @@
         title="Добавить в Telegram"
         aria-label="Добавить в Telegram"
       >
-        <app-icon name="open-in-new"></app-icon>
+        <app-icon path="mdiOpenInNew"></app-icon>
       </a>
     }
   </h2>
@@ -28,6 +28,8 @@
       class="grid__item add"
       title="Добавить стикер в текущий браузер"
       (click)="onOpenPopup()"
-    >+</div>
+    >
+      <app-icon path="mdiPlusThick" [scale]="1.5"></app-icon>
+    </div>
   }
 </div>
