@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import config from '../../../config';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'dev-panel-download',
@@ -8,11 +8,7 @@ import config from '../../../config';
   templateUrl: './dev-panel-download.component.html',
 })
 export class DevPanelDownloadComponent {
-  get dirname() {
-    return [config.path, config.global.archiveName].join('');
-  }
-
   get filename() {
-    return `${config.global.appDirName}, ${new Date().toLocaleString()}.zip`;
+    return [environment.APP_NAME, 'zip'].join('.');
   }
 }

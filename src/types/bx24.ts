@@ -1,8 +1,8 @@
 export interface IHandlerList {
-  [key: string]: <Type>(value: Type) => Type;
+  [key: string]: any;
 }
 export interface IBatch {
-  batch: (handlerList: IHandlerList) => void;
+  batch: (handlerList: IHandlerList) => any;
 }
 
 export interface IPlacement {
@@ -11,7 +11,7 @@ export interface IPlacement {
 
 export interface IBX24 {
   setTitle: (title: string) => void;
-  createBatch: (handlerList: IHandlerList) => IBatch;
+  createBatch: (handlerList?: IHandlerList) => IBatch;
   getDomain: () => string;
   bind: (
     el: Window,
