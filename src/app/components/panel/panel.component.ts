@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
 import { ButtonComponent } from '../button/button.component';
 import { PopupComponent } from '../popup/popup.component';
+import { ApiService } from '../../services/api.service';
 import { Bitrix24Service } from '../../services/bitrix24.service';
 import { BitrixBatch } from '../../../api/bitrix';
 import { ISticker } from '../../../packs';
@@ -23,7 +24,10 @@ export class PanelComponent implements OnInit {
   protected readonly $BX24: any = null;
   private batch: any = null;
 
-  constructor(private bitrixService: Bitrix24Service) {
+  constructor(
+    private bitrixService: Bitrix24Service,
+    private apiService: ApiService,
+  ) {
     this.$BX24 = this.bitrixService.BX24;
   }
 
@@ -69,5 +73,9 @@ export class PanelComponent implements OnInit {
 
   onClosePopup(): void {
     this.closePopup.emit();
+  }
+
+  clearCache() {
+    this.apiService.clearCache();
   }
 }

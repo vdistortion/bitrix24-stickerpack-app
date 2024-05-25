@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { Bitrix24Service } from './services/bitrix24.service';
-import stickers, { IStickerPack, marketplace } from '../packs';
-import api from '../api';
+import { ApiService } from './services/api.service';
 import { BitrixBatch } from '../api/bitrix';
+import stickers, { IStickerPack, marketplace } from '../packs';
 
 @Component({
   selector: 'app-chat',
@@ -12,17 +12,32 @@ import { BitrixBatch } from '../api/bitrix';
   styleUrl: './chat.component.scss',
 })
 export class ChatComponent {
+  public linkToApp: string = '';
   public state: 'default' | 'marketplace' = 'default';
   public customStickers: IStickerPack = {
     title: 'Свои стикеры',
     link: '',
-    list: api.get(),
+    list: [],
   };
   public size: number = 100;
   private readonly $BX24: any = null;
 
-  constructor(private bitrixService: Bitrix24Service) {
+  constructor(
+    private bitrixService: Bitrix24Service,
+    private apiService: ApiService,
+  ) {
+    this.customStickers.list = this.apiService.getStickers();
     this.$BX24 = this.bitrixService.BX24;
+
+    const RestCall = this.$BX24.createBatch();
+    RestCall.batch({
+      appInfo: ['app.info'],
+    })
+      .then(({ appInfo }: any) => {
+        this.linkToApp = `${this.$BX24.getDomain(true)}/marketplace/app/${appInfo.CODE}/`;
+      })
+      .catch(console.warn);
+
     this.bitrixService.BX24?.bind(window, 'keydown', (e: KeyboardEvent) => {
       if (e.ctrlKey && e.shiftKey && e.code === 'KeyT') {
         e.preventDefault();
@@ -63,7 +78,10 @@ export class ChatComponent {
   }
 
   getIcon(icon: string) {
-    const fullPath = ['assets/', icon].join('');
+    const site = [window.location.origin, window.location.pathname]
+      .join('')
+      .replace('index.html', '');
+    const fullPath = [site, 'assets/', icon].join('');
     return icon.includes('http') ? icon : fullPath;
   }
 }

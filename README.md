@@ -32,7 +32,9 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 * [Приложения для нового чата](https://dev.1c-bitrix.ru/learning/course/index.php?COURSE_ID=93&CHAPTER_ID=017254&LESSON_PATH=7657.17254)
   * scope [im](https://dev.1c-bitrix.ru/learning/course/index.php?COURSE_ID=93&CHAPTER_ID=07691&LESSON_PATH=7657.7685.7691)
   * scope [placement](https://dev.1c-bitrix.ru/rest_help/application_embedding/index.php#im)
-
+* Стикеры
+  * [https://tlgrm.ru/stickers](https://tlgrm.ru/stickers)
+  * [https://tgram.ru/stickers/](https://tgram.ru/stickers/)
 ___
 
 Based on [bitrix24-create-app](https://www.npmjs.com/package/bitrix24-create-app)
