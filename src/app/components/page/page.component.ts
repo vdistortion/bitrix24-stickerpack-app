@@ -5,7 +5,6 @@ import { IconComponent } from '../icon/icon.component';
 import { Bitrix24Service } from '../../services/bitrix24.service';
 import stickers, { ISticker, IStickerPack, marketplace } from '../../../packs';
 import api from '../../../api';
-import config from '../../../config';
 import { environment } from '../../../environments/environment';
 
 @Component({
@@ -27,7 +26,7 @@ export class PageComponent {
 
   constructor(private bitrixService: Bitrix24Service) {
     this.$BX24 = this.bitrixService.BX24;
-    if (this.$BX24) this.$BX24.setTitle(config.global.appName);
+    if (this.$BX24) this.$BX24.setTitle(environment.APP_NAME_RU);
 
     this.bitrixService.BX24?.bind(window, 'keydown', (e: KeyboardEvent) => {
       if (e.ctrlKey && e.shiftKey && e.code === 'KeyT') {
@@ -71,7 +70,7 @@ export class PageComponent {
     if (this.$BX24) {
       const title = this.isMarketplace
         ? 'Секретный бот 🤖'
-        : config.global.appName;
+        : environment.APP_NAME_RU;
       this.$BX24.setTitle(title);
     }
   }

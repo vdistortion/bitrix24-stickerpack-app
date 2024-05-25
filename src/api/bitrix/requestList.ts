@@ -1,4 +1,6 @@
-import config from '../../config';
+import { environment } from '../../environments/environment';
+
+const handler = [window.location.origin, window.location.pathname].join('');
 
 export default () => ({
   sendMessage(dialogId: string, message: string) {
@@ -27,13 +29,13 @@ export default () => ({
         method: 'placement.bind',
         params: {
           PLACEMENT: 'IM_SMILES_SELECTOR',
-          HANDLER: config.handler,
+          HANDLER: handler,
           LANG_ALL: {
             ru: {
-              TITLE: config.global.appName,
+              TITLE: environment.APP_NAME_RU,
             },
             en: {
-              TITLE: config.global.appNameEng,
+              TITLE: environment.APP_NAME_ENG,
             },
           },
           OPTIONS: {
