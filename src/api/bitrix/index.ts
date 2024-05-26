@@ -1,6 +1,5 @@
 import getRequestList from './requestList';
 import handlerList from './handlerList';
-import { IBX24, IBatch } from '../../types/bx24';
 
 export class BitrixBatch {
   public BX24: IBX24;
