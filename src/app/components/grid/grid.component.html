@@ -22,10 +22,8 @@
       [title]="sticker.title"
       [size]="sticker.size + '' || ''"
       [isCustom]="isAdd"
-      [active]="isActive(sticker.icon)"
       class="grid__item"
       (remove)="onRemoveSticker(sticker)"
-      (toggle)="onToggleSticker(sticker.icon, $event)"
     ></app-card>
   }
   @if (isAdd) {
