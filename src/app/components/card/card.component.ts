@@ -1,13 +1,12 @@
 import { v4 as uuid } from 'uuid';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import { IconComponent } from '../icon/icon.component';
 import { Bitrix24Service } from '../../services/bitrix24.service';
 
 @Component({
   selector: 'app-card',
   standalone: true,
-  imports: [FormsModule, IconComponent],
+  imports: [IconComponent],
   templateUrl: './card.component.html',
   styleUrl: './card.component.scss',
 })
@@ -18,8 +17,8 @@ export class CardComponent {
   @Input({ required: true }) public title: string;
   @Input({ required: true }) public size: string;
   @Input() public isCustom: boolean = false;
+  @Input() public active: boolean = true;
   public id: string = uuid();
-  public active: boolean = true;
   protected readonly $BX24: any = null;
 
   constructor(private bitrixService: Bitrix24Service) {

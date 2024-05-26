@@ -11,7 +11,12 @@
 <div class="pack">
   <h3>{{ customStickers.title }}</h3>
   @if (linkToApp) {
-    <a [href]="linkToApp" target="_blank" class="link" title="Перейти в приложение">
+    <a
+      [href]="linkToApp"
+      target="_blank"
+      class="link"
+      title="Перейти в приложение"
+    >
       +
     </a>
   }
@@ -32,7 +37,7 @@
   <div class="pack">
     <h3>{{ pack.title }}</h3>
     <ul class="stickers">
-      @for (sticker of pack.list; track $index) {
+      @for (sticker of getList(pack.list); track $index) {
         <li (click)="sendMessage(sticker.icon, sticker.title, sticker.size)">
           <img
             [src]="getIcon(sticker.icon)"

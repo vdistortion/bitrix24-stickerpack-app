@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Bitrix24Service } from './services/bitrix24.service';
 import { ApiService } from './services/api.service';
 import { BitrixBatch } from '../api/bitrix';
-import stickers, { IStickerPack, marketplace } from '../packs';
+import stickers, { ISticker, IStickerPack, marketplace } from '../packs';
 
 @Component({
   selector: 'app-chat',
@@ -52,6 +52,12 @@ export class ChatComponent {
 
   get isMarketplace() {
     return this.state === 'marketplace';
+  }
+
+  getList(list: ISticker[]) {
+    return list.filter((sticker: ISticker) => {
+      return this.apiService.isShowSticker(sticker.icon);
+    });
   }
 
   sendMessage(

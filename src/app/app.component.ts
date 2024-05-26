@@ -4,7 +4,6 @@ import { Bitrix24Service } from './services/bitrix24.service';
 import { ChatComponent } from './chat.component';
 import { DevPanelComponent } from './dev/dev-panel/dev-panel.component';
 import { PageComponent } from './components/page/page.component';
-import { IBX24, IPlacement } from '../types/bx24';
 
 @Component({
   selector: 'app-root',

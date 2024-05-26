@@ -5,7 +5,6 @@ import { ApiService } from '../../services/api.service';
 import { Bitrix24Service } from '../../services/bitrix24.service';
 import { BitrixBatch } from '../../../api/bitrix';
 import { ISticker } from '../../../packs';
-import { IPlacement } from '../../../types/bx24';
 
 @Component({
   selector: 'app-panel',
