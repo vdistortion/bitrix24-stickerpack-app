@@ -1,7 +1,8 @@
 import { v4 as uuid } from 'uuid';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
 import { IconComponent } from '../icon/icon.component';
 import { Bitrix24Service } from '../../services/bitrix24.service';
+import { ApiService } from '../../services/api.service';
 
 @Component({
   selector: 'app-card',
@@ -10,19 +11,25 @@ import { Bitrix24Service } from '../../services/bitrix24.service';
   templateUrl: './card.component.html',
   styleUrl: './card.component.scss',
 })
-export class CardComponent {
+export class CardComponent implements OnInit {
   @Output() public remove: EventEmitter<void> = new EventEmitter<void>();
-  @Output() public toggle: EventEmitter<boolean> = new EventEmitter<boolean>();
   @Input({ required: true }) public icon: string;
   @Input({ required: true }) public title: string;
   @Input({ required: true }) public size: string;
   @Input() public isCustom: boolean = false;
-  @Input() public active: boolean = true;
+  public active: boolean = true;
   public id: string = uuid();
   protected readonly $BX24: any = null;
 
-  constructor(private bitrixService: Bitrix24Service) {
+  constructor(
+    private bitrixService: Bitrix24Service,
+    private apiService: ApiService,
+  ) {
     this.$BX24 = this.bitrixService.BX24;
+  }
+
+  ngOnInit(): void {
+    this.active = this.apiService.isShowSticker(this.icon);
   }
 
   onRemove(e: Event): void {
@@ -31,7 +38,13 @@ export class CardComponent {
   }
 
   onToggle(e: Event): void {
-    this.toggle.emit((<HTMLInputElement>e.target).checked);
+    const checked = (<HTMLInputElement>e.target).checked;
+
+    if (checked) {
+      this.apiService.showSticker(this.icon);
+    } else {
+      this.apiService.hiddenSticker(this.icon);
+    }
   }
 
   getIcon(icon: string) {

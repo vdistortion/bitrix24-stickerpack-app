@@ -2,7 +2,6 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CardComponent } from '../card/card.component';
 import { IconComponent } from '../icon/icon.component';
 import { ISticker } from '../../../packs';
-import { ApiService } from '../../services/api.service';
 
 @Component({
   selector: 'app-grid',
@@ -22,25 +21,11 @@ export class GridComponent {
   @Input() public link: string = '';
   @Input() public isAdd: boolean = false;
 
-  constructor(private apiService: ApiService) {}
-
   onRemoveSticker(sticker: ISticker): void {
     this.removeSticker.emit(sticker);
   }
 
-  onToggleSticker(icon: string, checked: boolean): void {
-    if (checked) {
-      this.apiService.showSticker(icon);
-    } else {
-      this.apiService.hiddenSticker(icon);
-    }
-  }
-
   onOpenPopup(): void {
     this.openPopup.emit();
-  }
-
-  isActive(icon: string) {
-    return this.apiService.isShowSticker(icon);
   }
 }
