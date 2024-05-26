@@ -8,9 +8,13 @@ import { ISticker } from '../../packs';
 export class ApiService {
   private keyStickers: string = 'bitrix24-stickers';
   private keyStickersHidden: string = 'bitrix24-stickers-hidden';
+  private stickersHidden: string[] = [];
 
-  constructor(private storageService: WebStorageService) {}
+  constructor(private storageService: WebStorageService) {
+    this.stickersHidden = this.getStickersHidden();
+  }
 
+  // свои стикеры
   getStickers() {
     return this.storageService.get(this.keyStickers);
   }
@@ -19,22 +23,41 @@ export class ApiService {
     this.storageService.set(this.keyStickers, stickers);
   }
 
-  removeStickers() {
+  private removeStickers() {
     this.storageService.remove(this.keyStickers);
   }
 
-  getStickersHidden() {
+  // скрытые стикеры
+  private getStickersHidden() {
     return this.storageService.get(this.keyStickersHidden);
   }
 
-  setStickersHidden(stickersIds: string[]) {
-    this.storageService.set(this.keyStickersHidden, stickersIds);
+  private setStickersHidden() {
+    this.storageService.set(this.keyStickersHidden, this.stickersHidden);
   }
 
-  removeStickersHidden() {
+  isShowSticker(icon: string) {
+    const isShow = this.stickersHidden.find((item: string) => item === icon);
+    return !isShow;
+  }
+
+  hiddenSticker(icon: string) {
+    this.stickersHidden.push(icon);
+    this.setStickersHidden();
+  }
+
+  showSticker(icon: string) {
+    this.stickersHidden = this.stickersHidden.filter(
+      (item: string) => item !== icon,
+    );
+    this.setStickersHidden();
+  }
+
+  private removeStickersHidden() {
     this.storageService.remove(this.keyStickersHidden);
   }
 
+  // удаляем всё
   clearCache() {
     this.removeStickers();
     this.removeStickersHidden();

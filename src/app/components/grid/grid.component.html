@@ -16,15 +16,16 @@
       </a>
     }
   </h2>
-  @for (sticker of list; track sticker.icon; let index = $index) {
+  @for (sticker of list; track sticker.icon) {
     <app-card
       [icon]="sticker.icon"
       [title]="sticker.title"
       [size]="sticker.size + '' || ''"
       [isCustom]="isAdd"
+      [active]="isActive(sticker.icon)"
       class="grid__item"
       (remove)="onRemoveSticker(sticker)"
-      (toggle)="onToggleSticker([index, $event])"
+      (toggle)="onToggleSticker(sticker.icon, $event)"
     ></app-card>
   }
   @if (isAdd) {

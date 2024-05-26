@@ -7,12 +7,12 @@
         title="Удалить стикер из вашего браузера"
         (click)="onRemove($event)"
       ></app-icon>
-    } @else if ($BX24) {
+    } @else {
       <input
-        [(ngModel)]="active"
+        [checked]="active"
         [id]="id"
         type="checkbox"
-        title="Отключить стикер при копировании кода"
+        title="Отключить стикер"
         (click)="onToggle($event)"
       />
     }
