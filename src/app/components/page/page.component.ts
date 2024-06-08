@@ -35,16 +35,17 @@ export class PageComponent {
   ) {
     this.customStickers.list = this.apiService.getStickers();
     this.updateRecentStickers();
-    if (this.bitrixService.BX24)
+    if (this.bitrixService.BX24) {
       this.bitrixService.BX24.setTitle(environment.APP_NAME_RU);
 
-    this.bitrixService.BX24.bind(window, 'keydown', (e: KeyboardEvent) => {
-      if (e.ctrlKey && e.shiftKey && e.code === 'KeyT') {
-        e.preventDefault();
-        this.state = this.isMarketplace ? 'default' : 'marketplace';
-        this.setTitle();
-      }
-    });
+      this.bitrixService.BX24.bind(window, 'keydown', (e: KeyboardEvent) => {
+        if (e.ctrlKey && e.shiftKey && e.code === 'KeyT') {
+          e.preventDefault();
+          this.state = this.isMarketplace ? 'default' : 'marketplace';
+          this.setTitle();
+        }
+      });
+    }
   }
 
   get stickers(): IStickerPack[] {

@@ -16,6 +16,7 @@ export class DevPanelComponent {
   constructor(private bitrixService: Bitrix24Service) {}
 
   get isVisible() {
+    if (!this.bitrixService.BX24) return false;
     return (<string[]>environment.TEST_DOMAINS).includes(
       `${this.bitrixService.BX24.getDomain()}`,
     );

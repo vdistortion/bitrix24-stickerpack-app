@@ -2,34 +2,34 @@
   <div class="panel__item left">
     <ng-content></ng-content>
   </div>
-    <div class="panel__item right">
-      <app-button
-        icon="mdiCached"
-        title="Удалить сохранённые данные"
-        (click)="clearCache()"
-      >
-        Очистить кэш
-      </app-button>
-      @if (isLoaded) {
-        @if (isInstall) {
-          <app-button
-            icon="mdiRobotDead"
-            title="Удалить стикеры из чата"
-            (click)="uninstall()"
-          >
-            Удалить стикеры из чата
-          </app-button>
-        } @else {
-          <app-button
-            icon="mdiRobotHappy"
-            title="Установить стикеры в чат"
-            (click)="install()"
-          >
-            Установить стикеры в чат
-          </app-button>
-        }
+  <div class="panel__item right">
+    <app-button
+      icon="mdiCached"
+      title="Удалить сохранённые данные"
+      (click)="clearCache()"
+    >
+      Очистить кэш
+    </app-button>
+    @if (isLoaded) {
+      @if (isInstall) {
+        <app-button
+          icon="mdiRobotDead"
+          title="Удалить стикеры из чата"
+          (click)="uninstall()"
+        >
+          Удалить стикеры из чата
+        </app-button>
+      } @else {
+        <app-button
+          icon="mdiRobotHappy"
+          title="Установить стикеры в чат"
+          (click)="install()"
+        >
+          Установить стикеры в чат
+        </app-button>
       }
-    </div>
+    }
+  </div>
 </div>
 
 @if (isPopup) {
