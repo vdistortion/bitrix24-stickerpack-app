@@ -34,7 +34,9 @@ export class PageComponent {
     private apiService: ApiService,
   ) {
     this.customStickers.list = this.apiService.getStickers();
-    this.updateRecentStickers();
+    this.apiService.stickersRecent.subscribe((values) => {
+      this.recentStickers.list = values;
+    });
     if (this.bitrixService.BX24) {
       this.bitrixService.BX24.setTitle(environment.APP_NAME_RU);
 
@@ -79,11 +81,6 @@ export class PageComponent {
 
   onRemoveStickerRecent(sticker: ISticker) {
     this.apiService.removeStickerRecent(sticker);
-    this.updateRecentStickers();
-  }
-
-  updateRecentStickers() {
-    this.recentStickers.list = this.apiService.stickersRecent;
   }
 
   setTitle() {

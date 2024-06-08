@@ -11,19 +11,28 @@ export class ApiService {
   private keyStickers: string = 'bitrix24-stickers';
   private keyStickersHidden: string = 'bitrix24-stickers-hidden';
   private keyStickersRecent: string = 'bitrix24-stickers-recent';
-  stickersHidden: BehaviorSubject<string[]> = new BehaviorSubject<string[]>(
-    this.getStickersHidden(),
+  stickersHidden: BehaviorSubject<string[]> = new BehaviorSubject<string[]>([]);
+  stickersRecent: BehaviorSubject<ISticker[]> = new BehaviorSubject<ISticker[]>(
+    [],
   );
-  stickersRecent: ISticker[] = [];
 
   constructor(private storageService: WebStorageService) {
-    this.stickersRecent = this.getStickersRecent();
+    this.stickersRecent.subscribe((values) => {
+      this.setStickersRecent(values);
+    });
+
     this.stickersHidden.subscribe((values) => {
       this.setStickersHidden(values);
     });
+
     window.addEventListener('storage', (event: StorageEvent) => {
-      if (event.key === this.keyStickersHidden)
-        this.stickersHidden.next(this.getStickersHidden());
+      switch (event.key) {
+        case this.keyStickersRecent:
+          this.stickersRecent.next(this.getStickersRecent());
+          break;
+        case this.keyStickersHidden:
+          this.stickersHidden.next(this.getStickersHidden());
+      }
     });
   }
 
@@ -45,32 +54,32 @@ export class ApiService {
     return this.storageService.get(this.keyStickersRecent);
   }
 
-  private setStickersRecent() {
-    this.storageService.set(this.keyStickersRecent, this.stickersRecent);
+  private setStickersRecent(stickers: ISticker[]) {
+    this.storageService.set(this.keyStickersRecent, stickers);
   }
 
   addStickerRecent(sticker: ISticker) {
-    const isSticker = this.stickersRecent.find(
+    const stickers = this.stickersRecent.getValue();
+    const isSticker = stickers.find(
       (item: ISticker) => item.icon === sticker.icon,
     );
     if (isSticker) return;
-    this.stickersRecent.unshift(sticker);
-    this.stickersRecent = this.stickersRecent.slice(
-      0,
-      environment.STICKERS_RECENT_COUNT,
+    stickers.unshift(sticker);
+    this.stickersRecent.next(
+      stickers.slice(0, environment.STICKERS_RECENT_COUNT),
     );
-    this.setStickersRecent();
   }
 
   removeStickerRecent(sticker: ISticker) {
-    this.stickersRecent = this.stickersRecent.filter(
-      (item) => item.icon !== sticker.icon,
+    this.stickersRecent.next(
+      this.stickersRecent
+        .getValue()
+        .filter((item) => item.icon !== sticker.icon),
     );
-    this.setStickersRecent();
   }
 
   private removeStickersRecent() {
-    this.stickersRecent = [];
+    this.stickersRecent.next([]);
     this.storageService.remove(this.keyStickersRecent);
   }
 
