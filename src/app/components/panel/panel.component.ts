@@ -20,19 +20,16 @@ export class PanelComponent implements OnInit {
   @Input() public isPopup: boolean = false;
   public isLoaded: boolean = false;
   public isInstall: boolean = false;
-  protected readonly $BX24: any = null;
   private batch: any = null;
 
   constructor(
     private bitrixService: Bitrix24Service,
     private apiService: ApiService,
-  ) {
-    this.$BX24 = this.bitrixService.BX24;
-  }
+  ) {}
 
   ngOnInit(): void {
-    if (this.$BX24) {
-      this.batch = new BitrixBatch(this.$BX24);
+    if (this.bitrixService.BX24) {
+      this.batch = new BitrixBatch(this.bitrixService.BX24);
       this.init();
     }
   }
@@ -56,14 +53,18 @@ export class PanelComponent implements OnInit {
   }
 
   init() {
-    this.batch.getList().then(({ list }: any) => {
-      const isApp = (<IPlacement[]>list).find(
-        (item) => item.placement === 'IM_SMILES_SELECTOR',
-      );
+    this.batch
+      .getList()
+      .then(
+        ({ list }: { list: Array<{ placement: string; options: any }> }) => {
+          const isApp = list.find(
+            (item) => item.placement === 'IM_SMILES_SELECTOR',
+          );
 
-      this.isInstall = Boolean(isApp);
-      this.isLoaded = true;
-    });
+          this.isInstall = Boolean(isApp);
+          this.isLoaded = true;
+        },
+      );
   }
 
   onAddSticker(sticker: ISticker): void {

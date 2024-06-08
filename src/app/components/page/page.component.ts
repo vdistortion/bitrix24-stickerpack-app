@@ -22,18 +22,23 @@ export class PageComponent {
     link: '',
     list: [],
   };
+  public recentStickers: IStickerPack = {
+    title: 'Последние стикеры',
+    link: '',
+    list: [],
+  };
   public popup: boolean = false;
-  private readonly $BX24: any = null;
 
   constructor(
     private bitrixService: Bitrix24Service,
     private apiService: ApiService,
   ) {
     this.customStickers.list = this.apiService.getStickers();
-    this.$BX24 = this.bitrixService.BX24;
-    if (this.$BX24) this.$BX24.setTitle(environment.APP_NAME_RU);
+    this.updateRecentStickers();
+    if (this.bitrixService.BX24)
+      this.bitrixService.BX24.setTitle(environment.APP_NAME_RU);
 
-    this.bitrixService.BX24?.bind(window, 'keydown', (e: KeyboardEvent) => {
+    this.bitrixService.BX24.bind(window, 'keydown', (e: KeyboardEvent) => {
       if (e.ctrlKey && e.shiftKey && e.code === 'KeyT') {
         e.preventDefault();
         this.state = this.isMarketplace ? 'default' : 'marketplace';
@@ -71,12 +76,21 @@ export class PageComponent {
     this.onSave();
   }
 
+  onRemoveStickerRecent(sticker: ISticker) {
+    this.apiService.removeStickerRecent(sticker);
+    this.updateRecentStickers();
+  }
+
+  updateRecentStickers() {
+    this.recentStickers.list = this.apiService.stickersRecent;
+  }
+
   setTitle() {
-    if (this.$BX24) {
+    if (this.bitrixService.BX24) {
       const title = this.isMarketplace
         ? 'Секретный бот 🤖'
         : environment.APP_NAME_RU;
-      this.$BX24.setTitle(title);
+      this.bitrixService.BX24.setTitle(title);
     }
   }
 }

@@ -9,7 +9,7 @@ import { Bitrix24Service } from '../../services/bitrix24.service';
 })
 export class DevPanelReloadComponent {
   constructor(private bitrixService: Bitrix24Service) {
-    this.bitrixService.BX24?.bind(window, 'keydown', (e: KeyboardEvent) => {
+    this.bitrixService.BX24.bind(window, 'keydown', (e: KeyboardEvent) => {
       if (e.ctrlKey && e.code === 'KeyR') this.reload(e);
     });
   }

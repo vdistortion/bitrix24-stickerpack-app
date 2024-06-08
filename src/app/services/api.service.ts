@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { WebStorageService } from './webstorage.service';
 import { ISticker } from '../../packs';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -8,9 +9,12 @@ import { ISticker } from '../../packs';
 export class ApiService {
   private keyStickers: string = 'bitrix24-stickers';
   private keyStickersHidden: string = 'bitrix24-stickers-hidden';
+  private keyStickersRecent: string = 'bitrix24-stickers-recent';
   private stickersHidden: string[] = [];
+  stickersRecent: ISticker[] = [];
 
   constructor(private storageService: WebStorageService) {
+    this.stickersRecent = this.getStickersRecent();
     this.stickersHidden = this.getStickersHidden();
   }
 
@@ -25,6 +29,40 @@ export class ApiService {
 
   private removeStickers() {
     this.storageService.remove(this.keyStickers);
+  }
+
+  // недавние стикеры
+  private getStickersRecent() {
+    return this.storageService.get(this.keyStickersRecent);
+  }
+
+  private setStickersRecent() {
+    this.storageService.set(this.keyStickersRecent, this.stickersRecent);
+  }
+
+  addStickerRecent(sticker: ISticker) {
+    const isSticker = this.stickersRecent.find(
+      (item: ISticker) => item.icon === sticker.icon,
+    );
+    if (isSticker) return;
+    this.stickersRecent.unshift(sticker);
+    this.stickersRecent = this.stickersRecent.slice(
+      0,
+      environment.STICKERS_RECENT_COUNT,
+    );
+    this.setStickersRecent();
+  }
+
+  removeStickerRecent(sticker: ISticker) {
+    this.stickersRecent = this.stickersRecent.filter(
+      (item) => item.icon !== sticker.icon,
+    );
+    this.setStickersRecent();
+  }
+
+  private removeStickersRecent() {
+    this.stickersRecent = [];
+    this.storageService.remove(this.keyStickersRecent);
   }
 
   // скрытые стикеры
@@ -54,6 +92,7 @@ export class ApiService {
   }
 
   private removeStickersHidden() {
+    this.stickersHidden = [];
     this.storageService.remove(this.keyStickersHidden);
   }
 
@@ -61,5 +100,6 @@ export class ApiService {
   clearCache() {
     this.removeStickers();
     this.removeStickersHidden();
+    this.removeStickersRecent();
   }
 }

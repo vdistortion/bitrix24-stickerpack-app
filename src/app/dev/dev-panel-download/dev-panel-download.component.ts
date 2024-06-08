@@ -8,7 +8,5 @@ import { environment } from '../../../environments/environment';
   templateUrl: './dev-panel-download.component.html',
 })
 export class DevPanelDownloadComponent {
-  get filename() {
-    return [environment.APP_NAME, 'zip'].join('.');
-  }
+  filename: string = `${environment.APP_NAME}.zip`;
 }

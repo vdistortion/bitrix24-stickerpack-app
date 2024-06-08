@@ -19,6 +19,7 @@ export class GridComponent {
   @Input({ required: true }) public title: string;
   @Input({ required: true }) public list: ISticker[];
   @Input() public link: string = '';
+  @Input() public isRemoveButton: boolean = false;
   @Input() public isAdd: boolean = false;
 
   onRemoveSticker(sticker: ISticker): void {

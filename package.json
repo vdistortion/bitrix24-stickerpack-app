@@ -5,10 +5,10 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve --host 0.0.0.0",
-    "build": "ng build && node archiving.js",
+    "build": "ng build && tsx archiving.ts",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "grid": "node grid.js && npx sass-migrator division src/_grid.scss && prettier --write src/_grid.scss",
+    "grid": "tsx grid.ts && npx sass-migrator division src/_grid.scss && prettier --write src/_grid.scss",
     "grep": "sh grep.sh",
     "public": "npm run build && gh-pages -d dist/bitrix24-stickerpack-app/browser",
     "format": "prettier --write src"
@@ -25,7 +25,7 @@
     "@angular/router": "^17.3.0",
     "@mdi/js": "^7.4.47",
     "archiver": "^7.0.1",
-    "bitrix24-library": "^0.0.2",
+    "bitrix24-library": "^0.1.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "uuid": "^9.0.1",
@@ -35,6 +35,7 @@
     "@angular-devkit/build-angular": "^17.3.7",
     "@angular/cli": "^17.3.7",
     "@angular/compiler-cli": "^17.3.0",
+    "@types/archiver": "^6.0.2",
     "@types/jasmine": "~5.1.0",
     "@types/node": "^20.12.12",
     "gh-pages": "^6.1.1",
@@ -46,6 +47,7 @@
     "karma-jasmine-html-reporter": "~2.1.0",
     "prettier": "^3.2.5",
     "smart-grid": "^2.1.2",
+    "tsx": "^4.13.3",
     "typescript": "~5.4.2"
   }
 }

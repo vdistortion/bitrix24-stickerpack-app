@@ -21,8 +21,20 @@
     </a>
   }
   <ul class="stickers">
+    @for (sticker of recentStickers.list; track $index) {
+      <li (click)="sendMessage(sticker)">
+        <img
+          [src]="getIcon(sticker.icon)"
+          [alt]="sticker.title"
+          [title]="sticker.title"
+          [style]="getStyle(sticker.size)"
+        />
+      </li>
+    }
+  </ul>
+  <ul class="stickers">
     @for (sticker of customStickers.list; track $index) {
-      <li (click)="sendMessage(sticker.icon, sticker.title, sticker.size)">
+      <li (click)="sendMessage(sticker)">
         <img
           [src]="getIcon(sticker.icon)"
           [alt]="sticker.title"
@@ -38,7 +50,7 @@
     <h3>{{ pack.title }}</h3>
     <ul class="stickers">
       @for (sticker of getList(pack.list); track $index) {
-        <li (click)="sendMessage(sticker.icon, sticker.title, sticker.size)">
+        <li (click)="sendMessage(sticker)">
           <img
             [src]="getIcon(sticker.icon)"
             [alt]="sticker.title"

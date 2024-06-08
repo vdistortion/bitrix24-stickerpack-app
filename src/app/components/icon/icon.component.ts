@@ -6,7 +6,7 @@ import {
   mdiDownload,
   mdiReload,
   mdiCached,
-  mdiAngular,
+  mdiGithub,
   mdiRobotDead,
   mdiRobotHappy,
 } from '@mdi/js';
@@ -18,7 +18,7 @@ const icons: { [key: string]: string } = {
   mdiDownload,
   mdiReload,
   mdiCached,
-  mdiAngular,
+  mdiGithub,
   mdiRobotDead,
   mdiRobotHappy,
 };

@@ -19,26 +19,30 @@ export class ChatComponent {
     link: '',
     list: [],
   };
+  public recentStickers: IStickerPack = {
+    title: 'Последние стикеры',
+    link: '',
+    list: [],
+  };
   public size: number = 100;
-  private readonly $BX24: any = null;
 
   constructor(
     private bitrixService: Bitrix24Service,
     private apiService: ApiService,
   ) {
     this.customStickers.list = this.apiService.getStickers();
-    this.$BX24 = this.bitrixService.BX24;
+    this.updateRecentStickers();
 
-    const RestCall = this.$BX24.createBatch();
+    const RestCall = this.bitrixService.BX24.createBatch();
     RestCall.batch({
       appInfo: ['app.info'],
     })
       .then(({ appInfo }: any) => {
-        this.linkToApp = `${this.$BX24.getDomain(true)}/marketplace/app/${appInfo.CODE}/`;
+        this.linkToApp = `${this.bitrixService.BX24.getDomain(true)}/marketplace/app/${appInfo.CODE}/`;
       })
       .catch(console.warn);
 
-    this.bitrixService.BX24?.bind(window, 'keydown', (e: KeyboardEvent) => {
+    this.bitrixService.BX24.bind(window, 'keydown', (e: KeyboardEvent) => {
       if (e.ctrlKey && e.shiftKey && e.code === 'KeyT') {
         e.preventDefault();
         this.state = this.isMarketplace ? 'default' : 'marketplace';
@@ -60,19 +64,26 @@ export class ChatComponent {
     });
   }
 
-  sendMessage(
-    icon: string,
-    title: string = 'Noname Sticker',
-    size: number | string = this.size,
-  ) {
-    const { options } = this.$BX24.placement.info();
-    const batch = new BitrixBatch(this.$BX24);
+  updateRecentStickers() {
+    this.recentStickers.list = this.apiService.stickersRecent;
+  }
+
+  sendMessage(sticker: ISticker) {
+    const icon: string = sticker.icon;
+    const size: string | number = sticker.size || this.size;
+    const title: string = sticker.title || 'Noname Sticker';
+    const { options } = this.bitrixService.BX24.placement.info();
+    const batch = new BitrixBatch(this.bitrixService.BX24);
 
     return batch
       .sendMessage(
         options.dialogId,
         `[icon=${this.getIcon(icon)} size=${size} title=${title}]`,
       )
+      .then(() => {
+        this.apiService.addStickerRecent(sticker);
+        this.updateRecentStickers();
+      })
       .catch(console.warn);
   }
 
