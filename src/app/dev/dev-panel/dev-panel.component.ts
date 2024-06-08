@@ -17,7 +17,7 @@ export class DevPanelComponent {
 
   get isVisible() {
     return (<string[]>environment.TEST_DOMAINS).includes(
-      `${this.bitrixService.BX24?.getDomain()}`,
+      `${this.bitrixService.BX24.getDomain()}`,
     );
   }
 }

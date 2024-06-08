@@ -1,7 +1,6 @@
 import { v4 as uuid } from 'uuid';
 import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
 import { IconComponent } from '../icon/icon.component';
-import { Bitrix24Service } from '../../services/bitrix24.service';
 import { ApiService } from '../../services/api.service';
 
 @Component({
@@ -19,14 +18,8 @@ export class CardComponent implements OnInit {
   @Input() public isCustom: boolean = false;
   public active: boolean = true;
   public id: string = uuid();
-  protected readonly $BX24: any = null;
 
-  constructor(
-    private bitrixService: Bitrix24Service,
-    private apiService: ApiService,
-  ) {
-    this.$BX24 = this.bitrixService.BX24;
-  }
+  constructor(private apiService: ApiService) {}
 
   ngOnInit(): void {
     this.active = this.apiService.isShowSticker(this.icon);
