@@ -22,6 +22,11 @@ export class PageComponent {
     link: '',
     list: [],
   };
+  public recentStickers: IStickerPack = {
+    title: 'Последние стикеры',
+    link: '',
+    list: [],
+  };
   public popup: boolean = false;
 
   constructor(
@@ -29,6 +34,7 @@ export class PageComponent {
     private apiService: ApiService,
   ) {
     this.customStickers.list = this.apiService.getStickers();
+    this.updateRecentStickers();
     if (this.bitrixService.BX24)
       this.bitrixService.BX24.setTitle(environment.APP_NAME_RU);
 
@@ -68,6 +74,15 @@ export class PageComponent {
       (item: ISticker) => item !== sticker,
     );
     this.onSave();
+  }
+
+  onRemoveStickerRecent(sticker: ISticker) {
+    this.apiService.removeStickerRecent(sticker);
+    this.updateRecentStickers();
+  }
+
+  updateRecentStickers() {
+    this.recentStickers.list = this.apiService.stickersRecent;
   }
 
   setTitle() {

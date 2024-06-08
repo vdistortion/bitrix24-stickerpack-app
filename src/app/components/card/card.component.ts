@@ -15,7 +15,7 @@ export class CardComponent implements OnInit {
   @Input({ required: true }) public icon: string;
   @Input({ required: true }) public title: string;
   @Input({ required: true }) public size: string;
-  @Input() public isCustom: boolean = false;
+  @Input() public isRemoveButton: boolean = false;
   public active: boolean = true;
   public id: string = uuid();
 

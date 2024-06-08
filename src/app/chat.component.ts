@@ -19,6 +19,11 @@ export class ChatComponent {
     link: '',
     list: [],
   };
+  public recentStickers: IStickerPack = {
+    title: 'Последние стикеры',
+    link: '',
+    list: [],
+  };
   public size: number = 100;
 
   constructor(
@@ -26,6 +31,7 @@ export class ChatComponent {
     private apiService: ApiService,
   ) {
     this.customStickers.list = this.apiService.getStickers();
+    this.updateRecentStickers();
 
     const RestCall = this.bitrixService.BX24.createBatch();
     RestCall.batch({
@@ -58,11 +64,14 @@ export class ChatComponent {
     });
   }
 
-  sendMessage(
-    icon: string,
-    title: string = 'Noname Sticker',
-    size: number | string = this.size,
-  ) {
+  updateRecentStickers() {
+    this.recentStickers.list = this.apiService.stickersRecent;
+  }
+
+  sendMessage(sticker: ISticker) {
+    const icon: string = sticker.icon;
+    const size: string | number = sticker.size || this.size;
+    const title: string = sticker.title || 'Noname Sticker';
     const { options } = this.bitrixService.BX24.placement.info();
     const batch = new BitrixBatch(this.bitrixService.BX24);
 
@@ -71,6 +80,10 @@ export class ChatComponent {
         options.dialogId,
         `[icon=${this.getIcon(icon)} size=${size} title=${title}]`,
       )
+      .then(() => {
+        this.apiService.addStickerRecent(sticker);
+        this.updateRecentStickers();
+      })
       .catch(console.warn);
   }
 

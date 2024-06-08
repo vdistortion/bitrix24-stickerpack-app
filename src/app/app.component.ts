@@ -10,7 +10,6 @@ import { PageComponent } from './components/page/page.component';
   standalone: true,
   imports: [ChatComponent, DevPanelComponent, PageComponent],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss',
 })
 export class AppComponent {
   protected isApp: boolean = false;
