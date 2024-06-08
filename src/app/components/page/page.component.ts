@@ -33,7 +33,9 @@ export class PageComponent {
     private bitrixService: Bitrix24Service,
     private apiService: ApiService,
   ) {
-    this.customStickers.list = this.apiService.getStickers();
+    this.apiService.stickers.subscribe((values) => {
+      this.customStickers.list = values;
+    });
     this.apiService.stickersRecent.subscribe((values) => {
       this.recentStickers.list = values;
     });
@@ -59,7 +61,7 @@ export class PageComponent {
   }
 
   onSave() {
-    this.apiService.setStickers(this.customStickers.list);
+    this.apiService.stickers.next(this.customStickers.list);
   }
 
   onToggleSticker(key: number, [index, checked]: [number, boolean]) {

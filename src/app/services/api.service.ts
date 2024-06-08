@@ -9,53 +9,58 @@ import { environment } from '../../environments/environment';
 })
 export class ApiService {
   private keyStickers: string = 'bitrix24-stickers';
-  private keyStickersHidden: string = 'bitrix24-stickers-hidden';
-  private keyStickersRecent: string = 'bitrix24-stickers-recent';
+  private keyStickersHidden: string = `${this.keyStickers}-hidden`;
+  private keyStickersRecent: string = `${this.keyStickers}-recent`;
+  stickers: BehaviorSubject<ISticker[]> = new BehaviorSubject<ISticker[]>([]);
   stickersHidden: BehaviorSubject<string[]> = new BehaviorSubject<string[]>([]);
   stickersRecent: BehaviorSubject<ISticker[]> = new BehaviorSubject<ISticker[]>(
     [],
   );
 
   constructor(private storageService: WebStorageService) {
+    this.getStickers();
+    this.getStickersHidden();
+    this.getStickersRecent();
+
+    this.stickers.subscribe((values) => {
+      if (values.length) this.storageService.set(this.keyStickers, values);
+      else this.storageService.remove(this.keyStickers);
+    });
+
     this.stickersRecent.subscribe((values) => {
-      this.setStickersRecent(values);
+      if (values.length)
+        this.storageService.set(this.keyStickersRecent, values);
+      else this.storageService.remove(this.keyStickersRecent);
     });
 
     this.stickersHidden.subscribe((values) => {
-      this.setStickersHidden(values);
+      if (values.length)
+        this.storageService.set(this.keyStickersHidden, values);
+      else this.storageService.remove(this.keyStickersHidden);
     });
 
     window.addEventListener('storage', (event: StorageEvent) => {
       switch (event.key) {
         case this.keyStickersRecent:
-          this.stickersRecent.next(this.getStickersRecent());
+          this.getStickersRecent();
           break;
         case this.keyStickersHidden:
-          this.stickersHidden.next(this.getStickersHidden());
+          this.getStickersHidden();
+          break;
+        case this.keyStickers:
+          this.getStickers();
       }
     });
   }
 
   // свои стикеры
-  getStickers() {
-    return this.storageService.get(this.keyStickers);
-  }
-
-  setStickers(stickers: ISticker[]) {
-    this.storageService.set(this.keyStickers, stickers);
-  }
-
-  private removeStickers() {
-    this.storageService.remove(this.keyStickers);
+  private getStickers() {
+    this.stickers.next(this.storageService.get(this.keyStickers));
   }
 
   // недавние стикеры
   private getStickersRecent() {
-    return this.storageService.get(this.keyStickersRecent);
-  }
-
-  private setStickersRecent(stickers: ISticker[]) {
-    this.storageService.set(this.keyStickersRecent, stickers);
+    this.stickersRecent.next(this.storageService.get(this.keyStickersRecent));
   }
 
   addStickerRecent(sticker: ISticker) {
@@ -78,18 +83,9 @@ export class ApiService {
     );
   }
 
-  private removeStickersRecent() {
-    this.stickersRecent.next([]);
-    this.storageService.remove(this.keyStickersRecent);
-  }
-
   // скрытые стикеры
   private getStickersHidden() {
-    return this.storageService.get(this.keyStickersHidden);
-  }
-
-  private setStickersHidden(values: string[]) {
-    this.storageService.set(this.keyStickersHidden, values);
+    this.stickersHidden.next(this.storageService.get(this.keyStickersHidden));
   }
 
   isShowSticker(icon: string) {
@@ -114,15 +110,10 @@ export class ApiService {
     );
   }
 
-  private removeStickersHidden() {
-    this.stickersHidden.next([]);
-    this.storageService.remove(this.keyStickersHidden);
-  }
-
   // удаляем всё
   clearCache() {
-    this.removeStickers();
-    this.removeStickersHidden();
-    this.removeStickersRecent();
+    this.stickers.next([]);
+    this.stickersHidden.next([]);
+    this.stickersRecent.next([]);
   }
 }

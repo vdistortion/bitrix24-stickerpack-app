@@ -30,7 +30,9 @@ export class ChatComponent {
     private bitrixService: Bitrix24Service,
     private apiService: ApiService,
   ) {
-    this.customStickers.list = this.apiService.getStickers();
+    this.apiService.stickers.subscribe((values) => {
+      this.customStickers.list = values;
+    });
     this.apiService.stickersRecent.subscribe((values) => {
       this.recentStickers.list = values;
     });
