@@ -22,7 +22,9 @@ export class CardComponent implements OnInit {
   constructor(private apiService: ApiService) {}
 
   ngOnInit(): void {
-    this.active = this.apiService.isShowSticker(this.icon);
+    this.apiService.stickersHidden.subscribe((values) => {
+      this.active = !values.includes(this.icon);
+    });
   }
 
   onRemove(e: Event): void {
@@ -32,12 +34,7 @@ export class CardComponent implements OnInit {
 
   onToggle(e: Event): void {
     const checked = (<HTMLInputElement>e.target).checked;
-
-    if (checked) {
-      this.apiService.showSticker(this.icon);
-    } else {
-      this.apiService.hiddenSticker(this.icon);
-    }
+    this.apiService.toggleStickerHidden(checked, this.icon);
   }
 
   getIcon(icon: string) {

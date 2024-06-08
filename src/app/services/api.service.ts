@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 import { WebStorageService } from './webstorage.service';
 import { ISticker } from '../../packs';
 import { environment } from '../../environments/environment';
@@ -10,12 +11,20 @@ export class ApiService {
   private keyStickers: string = 'bitrix24-stickers';
   private keyStickersHidden: string = 'bitrix24-stickers-hidden';
   private keyStickersRecent: string = 'bitrix24-stickers-recent';
-  private stickersHidden: string[] = [];
+  stickersHidden: BehaviorSubject<string[]> = new BehaviorSubject<string[]>(
+    this.getStickersHidden(),
+  );
   stickersRecent: ISticker[] = [];
 
   constructor(private storageService: WebStorageService) {
     this.stickersRecent = this.getStickersRecent();
-    this.stickersHidden = this.getStickersHidden();
+    this.stickersHidden.subscribe((values) => {
+      this.setStickersHidden(values);
+    });
+    window.addEventListener('storage', (event: StorageEvent) => {
+      if (event.key === this.keyStickersHidden)
+        this.stickersHidden.next(this.getStickersHidden());
+    });
   }
 
   // свои стикеры
@@ -70,29 +79,34 @@ export class ApiService {
     return this.storageService.get(this.keyStickersHidden);
   }
 
-  private setStickersHidden() {
-    this.storageService.set(this.keyStickersHidden, this.stickersHidden);
+  private setStickersHidden(values: string[]) {
+    this.storageService.set(this.keyStickersHidden, values);
   }
 
   isShowSticker(icon: string) {
-    const isShow = this.stickersHidden.find((item: string) => item === icon);
+    const isShow = this.stickersHidden
+      .getValue()
+      .find((item: string) => item === icon);
     return !isShow;
   }
 
-  hiddenSticker(icon: string) {
-    this.stickersHidden.push(icon);
-    this.setStickersHidden();
+  toggleStickerHidden(checked: boolean, icon: string) {
+    if (checked) this.showSticker(icon);
+    else this.hiddenSticker(icon);
   }
 
-  showSticker(icon: string) {
-    this.stickersHidden = this.stickersHidden.filter(
-      (item: string) => item !== icon,
+  private hiddenSticker(icon: string) {
+    this.stickersHidden.next([...this.stickersHidden.getValue(), icon]);
+  }
+
+  private showSticker(icon: string) {
+    this.stickersHidden.next(
+      this.stickersHidden.getValue().filter((item: string) => item !== icon),
     );
-    this.setStickersHidden();
   }
 
   private removeStickersHidden() {
-    this.stickersHidden = [];
+    this.stickersHidden.next([]);
     this.storageService.remove(this.keyStickersHidden);
   }
 
