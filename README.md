@@ -1,6 +1,6 @@
 # bitrix24-stickerpack-app
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.7.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.3.
 
 ## Development server
 
@@ -24,17 +24,18 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 
 ## Further help
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli/) page.
 
 ## Links
 
-* [Material Design Icons](https://pictogrammers.com/library/mdi/)
-* [Applications for new chat](https://dev.1c-bitrix.ru/learning/course/index.php?COURSE_ID=93&CHAPTER_ID=017254&LESSON_PATH=7657.17254)
-  * scope [im](https://dev.1c-bitrix.ru/learning/course/index.php?COURSE_ID=93&CHAPTER_ID=07691&LESSON_PATH=7657.7685.7691)
-  * scope [placement](https://dev.1c-bitrix.ru/rest_help/application_embedding/index.php#im)
-* Stickers
-  * [https://tlgrm.ru/stickers](https://tlgrm.ru/stickers)
-  * [https://tgram.ru/stickers/](https://tgram.ru/stickers/)
-___
+- [Material Design Icons](https://pictogrammers.com/library/mdi/)
+- [Applications for new chat](https://dev.1c-bitrix.ru/learning/course/index.php?COURSE_ID=93&CHAPTER_ID=017254&LESSON_PATH=7657.17254)
+  - scope [im](https://dev.1c-bitrix.ru/learning/course/index.php?COURSE_ID=93&CHAPTER_ID=07691&LESSON_PATH=7657.7685.7691)
+  - scope [placement](https://dev.1c-bitrix.ru/rest_help/application_embedding/index.php#im)
+- Stickers
+  - [https://tlgrm.ru/stickers](https://tlgrm.ru/stickers)
+  - [https://tgram.ru/stickers/](https://tgram.ru/stickers/)
+
+---
 
 Based on [bitrix24-create-app](https://www.npmjs.com/package/bitrix24-create-app)
