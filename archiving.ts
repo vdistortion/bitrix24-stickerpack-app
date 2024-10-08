@@ -9,5 +9,7 @@ archive.glob('**/*', {
   cwd: ['dist', json.name, 'browser'].join(path.sep),
   ignore: ['**/*.zip'],
 });
-archive.pipe(fs.createWriteStream(['src', `${json.name}.zip`].join(path.sep)));
+archive.pipe(
+  fs.createWriteStream(['public', `${json.name}.zip`].join(path.sep)),
+);
 archive.finalize().catch(console.warn);

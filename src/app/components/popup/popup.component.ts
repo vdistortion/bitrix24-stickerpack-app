@@ -19,7 +19,7 @@ import { ISticker } from '../../../packs';
 export class PopupComponent implements OnInit {
   @Output() public close: EventEmitter<void> = new EventEmitter<void>();
   @Output() public add: EventEmitter<ISticker> = new EventEmitter<ISticker>();
-  public sizes: number[] = [100, 32, 27];
+  public sizes: number[] = [100, 32];
   public form: FormGroup;
 
   ngOnInit(): void {

@@ -11,7 +11,7 @@
 @if (recentStickers.list.length) {
   <div class="pack">
     <h3>{{ recentStickers.title }}</h3>
-    <ul class="stickers">
+    <ul>
       @for (sticker of recentStickers.list; track $index) {
         <li (click)="sendMessage(sticker)">
           <img
@@ -38,7 +38,7 @@
     </a>
   }
   @if (customStickers.list.length) {
-    <ul class="stickers">
+    <ul>
       @for (sticker of customStickers.list; track $index) {
         <li (click)="sendMessage(sticker)">
           <img
@@ -55,7 +55,7 @@
 @for (pack of stickers; track $index) {
   <div class="pack">
     <h3>{{ pack.title }}</h3>
-    <ul class="stickers">
+    <ul>
       @for (sticker of getList(pack.list); track $index) {
         <li (click)="sendMessage(sticker)">
           <img

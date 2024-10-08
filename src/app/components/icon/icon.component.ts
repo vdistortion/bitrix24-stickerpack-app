@@ -42,6 +42,7 @@ export class IconComponent {
   get viewBox() {
     return `0 0 ${this.size} ${this.size}`;
   }
+
   get styles() {
     return {
       transform: `scale(${this.scale}, ${this.scale})`,

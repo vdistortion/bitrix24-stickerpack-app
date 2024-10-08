@@ -1,15 +1,14 @@
-<header class="header">
+<header>
   <div class="l-wrapper">
     <app-panel
       [isPopup]="popup"
       (addSticker)="onAddSticker($event)"
       (closePopup)="popup = false"
     >
-      <h1 class="header__title" title="GitHub">
+      <h1 title="GitHub">
         <a
           href="https://github.com/vdistortion/bitrix24-stickerpack-app"
           target="_blank"
-          style="color: inherit; text-decoration: none"
         >
           <app-icon
             path="mdiGithub"

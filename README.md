@@ -24,7 +24,7 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 
 ## Further help
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli/) page.
+To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
 
 ## Links
 
@@ -34,8 +34,8 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
   - scope [placement](https://dev.1c-bitrix.ru/rest_help/application_embedding/index.php#im)
 - Stickers
   - [https://tlgrm.ru/stickers](https://tlgrm.ru/stickers)
-  - [https://tgram.ru/stickers/](https://tgram.ru/stickers/)
+  - [https://tgram.ru/stickers](https://tgram.ru/stickers)
 
 ---
 
-Based on [bitrix24-create-app](https://www.npmjs.com/package/bitrix24-create-app)
+Based on [bitrix24-create-app@2.2.0](https://www.npmjs.com/package/bitrix24-create-app/v/2.2.0)
