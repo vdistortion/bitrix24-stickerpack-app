@@ -1,5 +1,5 @@
-import { v4 as uuid } from 'uuid';
 import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
+import { v4 as uuid } from 'uuid';
 import { IconComponent } from '../icon/icon.component';
 import { ApiService } from '../../services/api.service';
 

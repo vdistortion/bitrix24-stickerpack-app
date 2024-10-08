@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CardComponent } from '../card/card.component';
 import { IconComponent } from '../icon/icon.component';
-import { ISticker } from '../../../packs';
+import type { ISticker } from '../../../packs';
 
 @Component({
   selector: 'app-grid',

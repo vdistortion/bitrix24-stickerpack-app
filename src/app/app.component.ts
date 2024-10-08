@@ -1,5 +1,8 @@
-import Bitrix24, { IBitrix24Library, IPlacementInfo } from 'bitrix24-library';
 import { Component } from '@angular/core';
+import Bitrix24, {
+  type IBitrix24Library,
+  type IPlacementInfo,
+} from 'bitrix24-library';
 import { Bitrix24Service } from './services/bitrix24.service';
 import { ChatComponent } from './chat.component';
 import { DevPanelComponent } from './dev/dev-panel/dev-panel.component';

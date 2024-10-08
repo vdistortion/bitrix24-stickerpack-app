@@ -1,6 +1,6 @@
+import type { IBitrix24Library, IBitrix24Batch } from 'bitrix24-library';
 import getRequestList from './requestList';
 import handlerList from './handlerList';
-import { IBitrix24Library, IBitrix24Batch } from 'bitrix24-library';
 
 export class BitrixBatch {
   public BX24: IBitrix24Library;

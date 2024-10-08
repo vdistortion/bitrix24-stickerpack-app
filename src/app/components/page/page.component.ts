@@ -4,7 +4,11 @@ import { GridComponent } from '../grid/grid.component';
 import { IconComponent } from '../icon/icon.component';
 import { Bitrix24Service } from '../../services/bitrix24.service';
 import { ApiService } from '../../services/api.service';
-import stickers, { ISticker, IStickerPack, marketplace } from '../../../packs';
+import stickers, {
+  type ISticker,
+  type IStickerPack,
+  marketplace,
+} from '../../../packs';
 import { environment } from '../../../environments/environment';
 
 @Component({

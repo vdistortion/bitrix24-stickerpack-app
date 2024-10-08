@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { WebStorageService } from './webstorage.service';
-import { ISticker } from '../../packs';
+import type { ISticker } from '../../packs';
 import { environment } from '../../environments/environment';
 
 @Injectable({

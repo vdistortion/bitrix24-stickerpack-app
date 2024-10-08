@@ -7,7 +7,7 @@ import {
 } from '@angular/forms';
 import { ButtonComponent } from '../button/button.component';
 import { IconComponent } from '../icon/icon.component';
-import { ISticker } from '../../../packs';
+import type { ISticker } from '../../../packs';
 
 @Component({
   selector: 'app-popup',

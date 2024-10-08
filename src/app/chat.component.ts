@@ -2,7 +2,11 @@ import { Component } from '@angular/core';
 import { Bitrix24Service } from './services/bitrix24.service';
 import { ApiService } from './services/api.service';
 import { BitrixBatch } from '../api/bitrix';
-import stickers, { ISticker, IStickerPack, marketplace } from '../packs';
+import stickers, {
+  type ISticker,
+  type IStickerPack,
+  marketplace,
+} from '../packs';
 
 @Component({
   selector: 'app-chat',

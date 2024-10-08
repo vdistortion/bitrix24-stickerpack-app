@@ -4,7 +4,7 @@ import { PopupComponent } from '../popup/popup.component';
 import { ApiService } from '../../services/api.service';
 import { Bitrix24Service } from '../../services/bitrix24.service';
 import { BitrixBatch } from '../../../api/bitrix';
-import { ISticker } from '../../../packs';
+import type { ISticker } from '../../../packs';
 
 @Component({
   selector: 'app-panel',
